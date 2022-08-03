@@ -21,7 +21,7 @@ int main()
     neu::g_renderer.SetClearColor(black);
 
     std::shared_ptr<neu::Texture> texture = std::make_shared<neu::Texture>();
-    texture->Create(neu::g_renderer, "sf2.bmp");
+    texture->Create(neu::g_renderer, "sf22.bmp");
 
     bool quit = false;
     while (!quit)
