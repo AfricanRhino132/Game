@@ -8,6 +8,7 @@ struct SDL_Window;
 
 namespace neu
 {
+	struct Transform;
 	class Renderer
 	{
 	public:
@@ -27,7 +28,8 @@ namespace neu
 		void DrawPoint(const Vector2& v, const Color& color); 
 		void DrawLine(const Vector2& v1, const Vector2& v2, const Color& color);
 
-		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0);
+		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0, const Vector2& scale = Vector2{ 1, 1}, const Vector2& registration = Vector2{ 0.5f, 0.5f});
+		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& registration = Vector2{ 0.5f, 0.5f });
 
 		int getScreenWidth() { return m_width; }
 		int getScreenHeight() { return m_height; }

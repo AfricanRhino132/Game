@@ -16,7 +16,7 @@ namespace neu
 		virtual void Update() override {}
 		virtual void Draw(Renderer& renderer);
 
-		float GetRadius() { return m_model.GetRadius(); }
+		float GetRadius() { return m_model.GetRadius() * std::max(m_transform.scale.x, m_transform.scale.y); }
 
 		virtual void OnCollision(Actor* other) {};
 

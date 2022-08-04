@@ -21,7 +21,13 @@ int main()
     neu::g_renderer.SetClearColor(black);
 
     std::shared_ptr<neu::Texture> texture = std::make_shared<neu::Texture>();
-    texture->Create(neu::g_renderer, "sf22.bmp");
+    texture->Create(neu::g_renderer, "sf2.bmp");
+
+    float angle = 0;
+
+    std::cout << __FILE__ << std::endl;
+    std::cout << __LINE__ << std::endl;
+    std::cout << __FUNCTION__ << std::endl;
 
     bool quit = false;
     while (!quit)
@@ -36,10 +42,12 @@ int main()
             quit = true;
         }
 
+        angle += 360.0f * neu::g_time.deltaTime;
+
         //render
         neu::g_renderer.BeginFrame();
         // draw
-        neu::g_renderer.Draw(texture, { 400, 300 }, 0);
+        neu::g_renderer.Draw(texture, { 400, 300 }, angle, { 2, 2 },  { 0.5f, 1.0f });
         neu::g_renderer.EndFrame();
     }
 
