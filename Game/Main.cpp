@@ -21,13 +21,24 @@ int main()
     neu::g_renderer.SetClearColor(black);
 
     std::shared_ptr<neu::Texture> texture = std::make_shared<neu::Texture>();
-    texture->Create(neu::g_renderer, "sf2.bmp");
+    texture->Create(neu::g_renderer, "jesus.png");
+
+    neu::Scene scene;
+
+    //Create actors
+    neu::Transform transform{ { 100, 100 }, 90, { 1, 1 } };
+    std::unique_ptr<neu::Actor> actor = std::make_unique<neu::Actor>(transform);
+    std::unique_ptr<neu::PlayerComponent> component = std::make_unique<neu::PlayerComponent>();
+    std::unique_ptr<neu::SpriteComponent> s_component = std::make_unique<neu::SpriteComponent>();
+
+    s_component->m_texture = texture;
+    
+    actor->AddComponent(std::move(component));
+    actor->AddComponent(std::move(s_component));
+
+    scene.Add(std::move(actor));
 
     float angle = 0;
-
-    std::cout << __FILE__ << std::endl;
-    std::cout << __LINE__ << std::endl;
-    std::cout << __FUNCTION__ << std::endl;
 
     bool quit = false;
     while (!quit)
@@ -44,10 +55,13 @@ int main()
 
         angle += 360.0f * neu::g_time.deltaTime;
 
+        scene.Update();
+
         //render
         neu::g_renderer.BeginFrame();
         // draw
-        neu::g_renderer.Draw(texture, { 400, 300 }, angle, { 2, 2 },  { 0.5f, 1.0f });
+        scene.Draw(neu::g_renderer);
+        neu::g_renderer.Draw(texture, { 400, 300 }, angle, { 1, 1 },  { 0.5f, 1.0f });
         neu::g_renderer.EndFrame();
     }
 
