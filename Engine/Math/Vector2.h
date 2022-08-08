@@ -87,7 +87,7 @@ namespace neu
 	{ 
 		float length = Length();
 
-		return Vector2{ x / length, y / length };
+		return (length == 0) ? Vector2::zero : Vector2{ x / length, y / length };
 	}
 
 	inline float Vector2::GetAngle()

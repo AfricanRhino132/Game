@@ -21,20 +21,28 @@ int main()
     neu::g_renderer.SetClearColor(black);
 
     std::shared_ptr<neu::Texture> texture = std::make_shared<neu::Texture>();
-    texture->Create(neu::g_renderer, "jesus.png");
+    texture->Create(neu::g_renderer, "Sprites/spaceShip.png");
+
+    neu::g_audioSystem.AddAudio("laser", "audio/spacelasershot.wav");
 
     neu::Scene scene;
 
     //Create actors
-    neu::Transform transform{ { 100, 100 }, 90, { 1, 1 } };
+    neu::Transform transform{ { 400, 300 }, 90, { 1, 1 } };
     std::unique_ptr<neu::Actor> actor = std::make_unique<neu::Actor>(transform);
     std::unique_ptr<neu::PlayerComponent> component = std::make_unique<neu::PlayerComponent>();
     std::unique_ptr<neu::SpriteComponent> s_component = std::make_unique<neu::SpriteComponent>();
+    std::unique_ptr<neu::AudioComponent> a_component = std::make_unique<neu::AudioComponent>();
+    std::unique_ptr<neu::PhysicsComponent> p_component = std::make_unique<neu::PhysicsComponent>();
 
     s_component->m_texture = texture;
-    
+
+    a_component->m_soundName = "laser";
+ 
     actor->AddComponent(std::move(component));
     actor->AddComponent(std::move(s_component));
+    actor->AddComponent(std::move(a_component));
+    actor->AddComponent(std::move(p_component));
 
     scene.Add(std::move(actor));
 
@@ -61,7 +69,7 @@ int main()
         neu::g_renderer.BeginFrame();
         // draw
         scene.Draw(neu::g_renderer);
-        neu::g_renderer.Draw(texture, { 400, 300 }, angle, { 1, 1 },  { 0.5f, 1.0f });
+        //neu::g_renderer.Draw(texture, { 400, 300 }, angle, { 1, 1 },  { 0.5f, 1.0f });
         neu::g_renderer.EndFrame();
     }
 

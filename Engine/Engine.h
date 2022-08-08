@@ -22,6 +22,8 @@
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Components/AudioComponent.h"
+#include "Components/PhysicsComponent.h"
 
 #include <memory>
 
