@@ -46,6 +46,7 @@ namespace neu
 		std::vector<std::unique_ptr<Component>> m_components;
 
 	};
+
 	template<typename T>
 	inline T* Actor::GetComponent()
 	{
