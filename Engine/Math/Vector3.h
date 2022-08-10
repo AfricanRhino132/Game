@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 
 namespace neu
 {
@@ -58,31 +59,33 @@ namespace neu
 
 	inline float Vector3::LengthSqr()
 	{
-
+		return x * x + y * y + z * z;
 	}
 
 	inline float Vector3::Length()
 	{
-		return 0.0f;
+		return std::sqrt(LengthSqr());
 	}
 
 	inline float Vector3::DistanceSqr(const Vector3& v)
 	{
-		return 0.0f;
+		return ((*this) - v).LengthSqr();
 	}
 
 	inline float Vector3::Distance(const Vector3& v)
 	{
-		return 0.0f;
+		return ((*this) - v).Length();
 	}
 
 	inline Vector3 Vector3::Normalized()
 	{
-		return Vector3();
+		float length = Length();
+
+		return (length == 0) ? Vector3{0, 0, 0} : Vector3{x / length, y / length, z / length};
 	}
 
 	inline void Vector3::Normalize()
 	{
-
+		*this /= Length();
 	}
 }
