@@ -24,6 +24,7 @@
 #include "Components/SpriteComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/PhysicsComponent.h"
+#include "Components/ModelComponent.h"
 
 #include <memory>
 

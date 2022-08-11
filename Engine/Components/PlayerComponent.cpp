@@ -36,11 +36,7 @@ namespace neu
 
 			component->ApplyForce(force);
 
-			force = (Vector2{ 400, 300 } - m_owner->m_transform.position).Normalized() * 100.0f;
-
-			component->ApplyForce(force);
 		}
-
 
 		m_owner->m_transform.position += direction * 300 * neu::g_time.deltaTime;
 

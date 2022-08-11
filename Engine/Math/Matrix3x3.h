@@ -17,9 +17,9 @@ namespace neu
 		Vector3 operator [] (size_t index) const { return rows[index]; }
 		Vector3& operator [] (size_t index) { return rows[index]; }
 
-		inline Vector2 operator * (const Vector2& v); //{ return { (v.x * rows[0][0]) + (v.y * rows[0][1]), (v.x * rows[1][0]) + (v.y * rows[1][1]) }; }
+		inline Vector2 operator * (const Vector2& v) const; //{ return { (v.x * rows[0][0]) + (v.y * rows[0][1]), (v.x * rows[1][0]) + (v.y * rows[1][1]) }; }
 
-		Matrix3x3 operator * (const Matrix3x3& mx);
+		Matrix3x3 operator * (const Matrix3x3& mx) const;
 
 		static Matrix3x3 CreateScale(const Vector2& scale);
 		static Matrix3x3 CreateScale(float scale);
@@ -39,7 +39,7 @@ namespace neu
 		rows[2] = r3;
 	}
 
-	inline Vector2 Matrix3x3::operator*(const Vector2& v)
+	inline Vector2 Matrix3x3::operator*(const Vector2& v) const
 	{
 		Vector2 result;
 
@@ -49,7 +49,7 @@ namespace neu
 		return result;
 	}
 
-	inline Matrix3x3 Matrix3x3::operator*(const Matrix3x3& mx)
+	inline Matrix3x3 Matrix3x3::operator*(const Matrix3x3& mx) const
 	{
 		Matrix3x3 result;
 
@@ -109,8 +109,8 @@ namespace neu
 	{
 		Matrix3x3 mx = identity;
 		
-		mx[0][3] = translate.x;
-		mx[1][3] = translate.y;
+		mx[0][2] = translate.x;
+		mx[1][2] = translate.y;
 
 		return mx;
 	}
