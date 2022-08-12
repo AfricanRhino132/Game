@@ -18,6 +18,8 @@
 
 #include "Input/InputSystem.h"
 
+#include "Resource/ResourceManager.h"
+
 #include "Audio/AudioSystem.h"
 
 #include "Components/PlayerComponent.h"
@@ -37,5 +39,5 @@ namespace neu
 
 	extern AudioSystem g_audioSystem;
 
-	
+	extern ResourceManager g_resources;
 }

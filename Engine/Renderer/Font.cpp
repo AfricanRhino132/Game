@@ -22,6 +22,19 @@ namespace neu
 		}
 	}
 
+	bool Font::Create(const std::string& name, void* data)
+	{
+		int* fontSize = static_cast<int*>(data);
+
+		if (fontSize)
+		{
+			Load(name, *fontSize);
+			return true;
+		}
+
+		return false;
+	}
+
 	void Font::Load(const std::string& filename, int fontSize)
 	{
 		// !! call TTF_OpenFont  

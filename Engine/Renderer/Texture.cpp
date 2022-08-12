@@ -17,6 +17,17 @@ namespace neu
         
     }
 
+    bool Texture::Create(const std::string& name, void* data)
+    {
+        
+        if (data)
+        {
+            return Create(*static_cast<Renderer*>(data), name);
+        }
+
+        return false;
+    }
+
     bool Texture::Create(Renderer& renderer, const std::string& filename)
     {
         // load surface 

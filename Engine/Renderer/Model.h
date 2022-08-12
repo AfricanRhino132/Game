@@ -1,11 +1,12 @@
 #pragma once
 #include "Renderer.h"
+#include "Resource/Resource.h"
 #include <vector>
 #include <string>
 
 namespace neu
 {
-    class Model
+    class Model : public Resource
     {
     public:
         Model() = default;
@@ -15,7 +16,7 @@ namespace neu
 
         Model(const std::string& filename);
 
-        bool Create(const std::string& filename);
+        bool Create(const std::string& name, void* data) override;
 
         void Draw(Renderer& renderer, Vector2& position, float angle, const Vector2& scale = Vector2{ 1, 1 });
 
@@ -27,9 +28,11 @@ namespace neu
         float GetRadius() { return m_radius; }
 
         neu::Color& GetColor() { return m_color; }
-    neu::Color m_color { 0, 0, 0, 0 };
-    private:
         
+
+    private:
+        neu::Color m_color { 0, 0, 0, 0 };
+
         std::vector<neu::Vector2> m_points;
 
         float m_radius = 0;
