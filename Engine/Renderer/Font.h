@@ -16,9 +16,9 @@ namespace neu
 		Font(const std::string& filename, int fontSize);
 		~Font();
 
-		bool Create(const std::string& name, void* data = nullptr) override;
+		bool Create(std::string name, ...) override;
 
-		void Load(const std::string& filename, int fontSize);
+		bool Load(const std::string& filename, int fontSize);
 
 		friend class Text;
 

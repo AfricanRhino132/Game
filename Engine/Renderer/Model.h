@@ -16,7 +16,7 @@ namespace neu
 
         Model(const std::string& filename);
 
-        bool Create(const std::string& name, void* data) override;
+        bool Create(std::string name, ...) override;
 
         void Draw(Renderer& renderer, Vector2& position, float angle, const Vector2& scale = Vector2{ 1, 1 });
 

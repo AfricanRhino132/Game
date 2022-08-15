@@ -35,7 +35,7 @@ int main()
     std::unique_ptr<neu::Component> p_component = neu::Factory::Instance().Create<neu::Component>("PhysicsComponent");
     std::unique_ptr<neu::ModelComponent> m_component = neu::Factory::Instance().Create<neu::ModelComponent>("ModelComponent");
 
-    s_component->m_texture = neu::g_resources.Get<neu::Texture>("sprites/playership.png", &neu::g_renderer);
+    s_component->m_texture = neu::g_resources.Get<neu::Texture>("sprites/playership.png", neu::g_renderer);
 
     m_component->m_model = neu::g_resources.Get<neu::Model>("models/ship.txt");
 

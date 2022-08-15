@@ -15,16 +15,16 @@ namespace neu
 		void Initialize();
 		void Shutdown();
 		
-		template <typename T>
-		std::shared_ptr<T> Get(const std::string& key, void* data = nullptr);
+		template <typename T, typename ... TArgs>
+		std::shared_ptr<T> Get(const std::string& key, TArgs... args);
 
 	private:
 		std::map<std::string, std::shared_ptr<Resource>> m_resources;
 
 	};
 
-	template<typename T>
-	inline std::shared_ptr<T> ResourceManager::Get(const std::string& key, void* data)
+	template<typename T, typename ... TArgs>
+	inline std::shared_ptr<T> ResourceManager::Get(const std::string& key, TArgs... args)
 	{
 		if (m_resources.find(key) != m_resources.end())
 		{
@@ -34,7 +34,7 @@ namespace neu
 		{
 			std::shared_ptr<T> resource = std::make_shared<T>();
 
-			resource->Create(key, data);
+			resource->Create(key, args...);
 
 			m_resources[key] = resource;
 

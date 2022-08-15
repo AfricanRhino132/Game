@@ -22,24 +22,27 @@ namespace neu
 		}
 	}
 
-	bool Font::Create(const std::string& name, void* data)
+	bool Font::Create(std::string name, ...)
 	{
-		int* fontSize = static_cast<int*>(data);
 
-		if (fontSize)
-		{
-			Load(name, *fontSize);
-			return true;
-		}
+		va_list args;
 
-		return false;
+		va_start(args, name);
+
+		int fontSize = va_arg(args, int);
+
+		va_end(args);
+		
+		return Load(name, fontSize);
 	}
 
-	void Font::Load(const std::string& filename, int fontSize)
+	bool Font::Load(const std::string& filename, int fontSize)
 	{
 		// !! call TTF_OpenFont  
 		TTF_Init();
 		m_ttfFont = TTF_OpenFont(filename.c_str(), fontSize);
+
+		return m_ttfFont;
 		// !! use filename.c_str() to get the c-style string 
 		// !! assign the return value of TTF_OpenFont to m_ttfFont 
 	}
