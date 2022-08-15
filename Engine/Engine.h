@@ -10,6 +10,8 @@
  
 #include "FrameWork/Scene.h"
 #include "FrameWork/Game.h"
+#include "FrameWork/Singleton.h"
+#include "FrameWork/Factory.h"
 
 #include "Renderer/Model.h"
 #include "Renderer/Font.h"
@@ -34,10 +36,13 @@ namespace neu
 {
 	extern InputSystem g_inputSystem;
 	extern Renderer g_renderer;
-
 	extern Time g_time;
-
 	extern AudioSystem g_audioSystem;
-
 	extern ResourceManager g_resources;
+
+	class Engine : public Singleton<Engine>
+	{
+	public:
+		void Register();
+	};
 }

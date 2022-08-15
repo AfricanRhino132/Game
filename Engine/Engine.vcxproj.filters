@@ -134,6 +134,12 @@
     <ClInclude Include="Resource\ResourceManager.h">
       <Filter>Source\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="FrameWork\Singleton.h">
+      <Filter>Source\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Factory.h">
+      <Filter>Source\FrameWork</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
