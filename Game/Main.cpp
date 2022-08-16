@@ -6,9 +6,43 @@
 
 int main()
 {
+    neu::InitializeMemory();
     neu::SetFilePath("../Assets");
 
-    neu::InitializeMemory();
+    rapidjson::Document document;
+    bool success = neu::json::Load("json.txt", document);
+    assert(success);
+
+    std::string str;
+    neu::json::Get(document, "string", str);
+    std::cout << str << std::endl;
+
+    bool b;
+    neu::json::Get(document, "boolean", b);
+    std::cout << b << std::endl;
+
+    int i1;
+    neu::json::Get(document, "integer1", i1);
+    std::cout << i1 << std::endl;
+
+    int i2;
+    neu::json::Get(document, "integer2", i2);
+    std::cout << i2 << std::endl;
+
+    float f;
+    neu::json::Get(document, "float", f);
+    std::cout << f << std::endl;
+
+    neu::Vector2 v2;
+    neu::json::Get(document, "vector2", v2);
+    std::cout << v2 << std::endl;
+
+    neu::Color color;
+    neu::json::Get(document, "color", color);
+    std::cout << color << std::endl;
+
+   
+    
 
     neu::g_renderer.Initialize();
     neu::g_inputSystem.Initialize();
@@ -20,42 +54,7 @@ int main()
     neu::g_renderer.CreateWindow("Neumont", 800, 600);
     neu::g_renderer.SetClearColor(neu::Color::black);
 
-    neu::g_audioSystem.AddAudio("laser", "audio/spacelasershot.wav");
-
     neu::Scene scene;
-
-    //Create actors
-    neu::Transform transform{ { 400, 300 }, 0, { 1, 1 } };
-    //std::unique_ptr<neu::Actor> actor = std::make_unique<neu::Actor>(transform);
-    std::unique_ptr<neu::Actor> actor = neu::Factory::Instance().Create<neu::Actor>("Actor");
-    actor->m_transform = transform;
-    std::unique_ptr<neu::Component> component = neu::Factory::Instance().Create<neu::Component>("PlayerComponent");
-    std::unique_ptr<neu::SpriteComponent> s_component = neu::Factory::Instance().Create<neu::SpriteComponent>("SpriteComponent");
-    std::unique_ptr<neu::AudioComponent> a_component = neu::Factory::Instance().Create<neu::AudioComponent>("AudioComponent");
-    std::unique_ptr<neu::Component> p_component = neu::Factory::Instance().Create<neu::Component>("PhysicsComponent");
-    std::unique_ptr<neu::ModelComponent> m_component = neu::Factory::Instance().Create<neu::ModelComponent>("ModelComponent");
-
-    s_component->m_texture = neu::g_resources.Get<neu::Texture>("sprites/playership.png", neu::g_renderer);
-
-    m_component->m_model = neu::g_resources.Get<neu::Model>("models/ship.txt");
-
-    a_component->m_soundName = "laser";
- 
-    actor->AddComponent(std::move(component));
-    actor->AddComponent(std::move(s_component));
-    actor->AddComponent(std::move(a_component));
-    actor->AddComponent(std::move(p_component));
-    //actor->AddComponent(std::move(m_component));
-
-    neu::Transform transformc{ { 10, 5 }, 0, { 1, 1 } };
-    std::unique_ptr<neu::Actor> child = std::make_unique<neu::Actor>(transformc);
-    std::unique_ptr<neu::ModelComponent> m_componentc = std::make_unique<neu::ModelComponent>();
-    m_componentc->m_model = neu::g_resources.Get<neu::Model>("models/ship.txt");
-    child->AddComponent(std::move(m_componentc));
-
-    actor->AddChild(std::move(child));
-
-    scene.Add(std::move(actor));
 
     bool quit = false;
     while (!quit)

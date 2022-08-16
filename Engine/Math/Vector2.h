@@ -23,7 +23,6 @@ namespace neu
 		float operator [] (size_t index) const { return (&x)[index]; }
 		float& operator [] (size_t index) { return (&x)[index]; }
 
-
 		//Arithmetic Operators
 		Vector2 operator + (const Vector2 v) const { return Vector2{ x + v.x, y + v.y }; }
 		Vector2 operator - (const Vector2 v) const { return Vector2{ x - v.x, y - v.y }; }
@@ -72,6 +71,7 @@ namespace neu
 	};
 
 	std::istream& operator >> (std::istream& stream, Vector2& v);
+	std::ostream& operator << (std::ostream& stream, const Vector2& v);
 
 	inline float Vector2::LengthSqr() { return x * x + y * y; }
 	inline float Vector2::Length() { return std::sqrt(x * x + y * y); }
