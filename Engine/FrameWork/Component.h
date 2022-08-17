@@ -5,7 +5,7 @@ namespace neu
 {
 	class Actor;
 
-	class Component : public GameObject
+	class Component : public GameObject, public ISerializable
 	{
 	public:
 		Component() = default;
@@ -17,5 +17,6 @@ namespace neu
 
 	protected:
 		Actor* m_owner = nullptr;
+
 	};
 }

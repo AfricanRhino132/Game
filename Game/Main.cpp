@@ -2,47 +2,10 @@
 
 #include <iostream>
 
-
-
 int main()
 {
     neu::InitializeMemory();
     neu::SetFilePath("../Assets");
-
-    rapidjson::Document document;
-    bool success = neu::json::Load("json.txt", document);
-    assert(success);
-
-    std::string str;
-    neu::json::Get(document, "string", str);
-    std::cout << str << std::endl;
-
-    bool b;
-    neu::json::Get(document, "boolean", b);
-    std::cout << b << std::endl;
-
-    int i1;
-    neu::json::Get(document, "integer1", i1);
-    std::cout << i1 << std::endl;
-
-    int i2;
-    neu::json::Get(document, "integer2", i2);
-    std::cout << i2 << std::endl;
-
-    float f;
-    neu::json::Get(document, "float", f);
-    std::cout << f << std::endl;
-
-    neu::Vector2 v2;
-    neu::json::Get(document, "vector2", v2);
-    std::cout << v2 << std::endl;
-
-    neu::Color color;
-    neu::json::Get(document, "color", color);
-    std::cout << color << std::endl;
-
-   
-    
 
     neu::g_renderer.Initialize();
     neu::g_inputSystem.Initialize();
@@ -55,6 +18,12 @@ int main()
     neu::g_renderer.SetClearColor(neu::Color::black);
 
     neu::Scene scene;
+
+    rapidjson::Document document;
+    bool success = neu::json::Load("level.txt", document);
+    assert(success);
+
+    scene.Read(document);
 
     bool quit = false;
     while (!quit)

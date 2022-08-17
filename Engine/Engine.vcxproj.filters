@@ -229,6 +229,9 @@
     <ClCompile Include="Serialization\json.cpp">
       <Filter>Source\Serialization</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Source\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\level.txt">

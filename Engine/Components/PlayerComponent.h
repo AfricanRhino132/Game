@@ -8,6 +8,12 @@ namespace neu
 	public:
 		PlayerComponent() = default;
 
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
+
 		void Update() override;
+
+	public:
+		float speed = 0;
 	};
 }

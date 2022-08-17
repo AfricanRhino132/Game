@@ -9,7 +9,7 @@ namespace neu
 	class Scene;
 	class Renderer;
 
-	class Actor : public GameObject
+	class Actor : public GameObject, public ISerializable
 	{
 	public:
 		Actor() = default;
@@ -17,6 +17,9 @@ namespace neu
 
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void AddChild(std::unique_ptr<Actor> child);
 
@@ -31,11 +34,20 @@ namespace neu
 
 		bool IsDead() { return m_dead; }
 
+		const std::string& GetTag() { return tag; }
+		void SetTag(const std::string& tag) { this->tag = tag; }
+
+		const std::string& GetName() { return name; }
+		void SetName(const std::string& name) { this->name = name; }
+
 		friend class Scene;
 		
 		Transform m_transform;
 
 	protected:
+		std::string name;
+		std::string tag;
+
 		bool m_destroy = false;
 
 		Scene* m_scene = nullptr;

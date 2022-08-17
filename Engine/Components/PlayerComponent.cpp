@@ -25,7 +25,7 @@ namespace neu
 		float thrust = 0;
 		if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
 		{
-			thrust = 500;
+			thrust = speed;
 		}
 
 		auto component = m_owner->GetComponent<PhysicsComponent>();
@@ -49,5 +49,15 @@ namespace neu
 				component->Play();
 			}
 		}
+	}
+	bool PlayerComponent::Write(const rapidjson::Value& value) const
+	{
+		return false;
+	}
+	bool PlayerComponent::Read(const rapidjson::Value& value)
+	{
+		READ_DATA(value, speed);
+
+		return true;
 	}
 }

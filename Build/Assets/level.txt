@@ -10,15 +10,23 @@
                300
             ],
             "scale":[
-               2,
-               2
+               5,
+               5
             ],
             "rotation":0
          },
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":200
+               "speed":500
+            },
+            {
+               "type":"ModelComponent",
+               "model_name":"Models/Ship.txt"
+            },
+            {
+               "type":"PhysicsComponent",
+               "damping":"1.0"
             }
          ]
       }
