@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
+#include "Math/Rect.h"
 
 namespace neu
 {
@@ -17,6 +18,7 @@ namespace neu
 		virtual void Draw(Renderer& renderer) override;
 
 	public:
+		Rect source;
 		std::shared_ptr<Texture> m_texture;
 	};
 }

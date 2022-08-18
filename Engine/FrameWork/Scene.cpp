@@ -6,7 +6,7 @@
 
 namespace neu
 {
-	void neu::Scene::Update()
+	void Scene::Update()
 	{
 		auto iter = m_actors.begin();
 

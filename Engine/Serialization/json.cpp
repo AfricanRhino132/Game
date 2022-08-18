@@ -3,6 +3,7 @@
 #include "Core/Logger.h"
 #include "Math/Vector2.h"
 #include "Math/Color.h"
+#include "Math/Rect.h"
 
 #include <fstream>
 namespace neu::json
@@ -79,8 +80,7 @@ namespace neu::json
 
 	bool Get(const rapidjson::Value& value, const std::string& name, std::string& data)
 	{
-		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsString() ==
-			false)
+		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsString() == false)
 		{
 			LOG("error reading json data %s", name.c_str());
 			return false;
@@ -144,6 +144,27 @@ namespace neu::json
 
 			data[i] = array[i].GetFloat();
 		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, Rect& data)
+	{
+		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
+		{
+			LOG("error reading json data %s", name.c_str());
+			return false;
+
+		}
+
+		// create json array object 
+		auto& array = value[name.c_str()];
+		// get array values 
+
+		data.x = array[0].GetInt();
+		data.y = array[1].GetInt();
+		data.w = array[2].GetInt();
+		data.h = array[3].GetInt();
 
 		return true;
 	}

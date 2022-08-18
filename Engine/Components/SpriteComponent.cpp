@@ -1,6 +1,8 @@
 #include "SpriteComponent.h"
 #include "Renderer/Renderer.h"
 #include "FrameWork/Actor.h"
+#include "Renderer/Texture.h"
+#include "Engine.h"
 
 namespace neu
 {
@@ -11,7 +13,7 @@ namespace neu
 
 	void SpriteComponent::Draw(Renderer& renderer)
 	{
-		renderer.Draw(m_texture, m_owner->m_transform);
+		renderer.Draw(m_texture,source, m_owner->m_transform);
 	}
 	bool SpriteComponent::Write(const rapidjson::Value& value) const
 	{
@@ -19,6 +21,20 @@ namespace neu
 	}
 	bool SpriteComponent::Read(const rapidjson::Value& value)
 	{
-		return false;
+		std::string texture_name;
+
+		READ_DATA(value, texture_name);
+
+		m_texture = g_resources.Get<Texture>(texture_name, g_renderer);
+
+		if (!READ_DATA(value, source))
+		{
+			source.x = 0;
+			source.y = 0;
+			source.w = (int)m_texture->GetSize().x;
+			source.h = (int)m_texture->GetSize().y;
+		}
+
+		return true;
 	}
 }

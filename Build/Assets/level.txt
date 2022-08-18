@@ -10,8 +10,8 @@
                300
             ],
             "scale":[
-               5,
-               5
+               2,
+               2
             ],
             "rotation":0
          },
@@ -21,12 +21,18 @@
                "speed":500
             },
             {
-               "type":"ModelComponent",
-               "model_name":"Models/Ship.txt"
+               "type":"SpriteAnimComponent",
+               "texture_name":"Sprites/bannerspritesheet.png",
+               "fps" : 6.0,
+               "num_columns" : 6,
+               "num_rows" : 1,
+               "start_frame" : 1,
+               "end_frame" : 6
+
             },
             {
                "type":"PhysicsComponent",
-               "damping":"1.0"
+               "damping": 1.0
             }
          ]
       }

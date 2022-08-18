@@ -16,6 +16,7 @@ namespace neu
 		REGISTER_CLASS(ModelComponent);
 		REGISTER_CLASS(PhysicsComponent);
 		REGISTER_CLASS(PlayerComponent);
+		REGISTER_CLASS(SpriteAnimComponent);
 		
 	}
 }
