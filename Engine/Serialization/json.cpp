@@ -142,7 +142,7 @@ namespace neu::json
 				return false;
 			}
 
-			data[i] = array[i].GetFloat();
+			data[i] = (uint8_t)array[i].GetFloat();
 		}
 
 		return true;

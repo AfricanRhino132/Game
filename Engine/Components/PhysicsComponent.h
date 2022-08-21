@@ -8,10 +8,10 @@ namespace neu
 	public:
 		PhysicsComponent() = default;
 
-		virtual bool Write(const rapidjson::Value& value) const override;
-		virtual bool Read(const rapidjson::Value& value) override;
+		bool Write(const rapidjson::Value& value) const override;
+		bool Read(const rapidjson::Value& value) override;
 
-		virtual void Update() override;
+		void Update() override;
 
 		void ApplyForce(const Vector2& force) { acceleration += force; };
 

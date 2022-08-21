@@ -2,6 +2,8 @@
 
 #include "Serialization/Json.h"
 
+#include "Physics/PhysicsSystem.h"
+
 #include "Core/Memory.h"
 #include "Core/File.h"
 #include "Core/Time.h"
@@ -42,6 +44,7 @@ namespace neu
 	extern Time g_time;
 	extern AudioSystem g_audioSystem;
 	extern ResourceManager g_resources;
+	extern PhysicsSystem g_physics;
 
 	class Engine : public Singleton<Engine>
 	{
