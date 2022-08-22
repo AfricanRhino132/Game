@@ -25,6 +25,7 @@ int main()
     assert(success);
 
     scene.Read(document);
+    scene.Initialize();
 
     bool quit = false;
     while (!quit)

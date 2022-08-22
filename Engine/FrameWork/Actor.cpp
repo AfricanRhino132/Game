@@ -5,6 +5,19 @@
 
 namespace neu
 {
+	void Actor::Initialize()
+	{
+		for (auto& component : m_components)
+		{
+			component->Initialize();
+		}
+
+		for (auto& child : m_children)
+		{
+			child->Initialize();
+		}
+	}
+
 	void Actor::Update()
 	{
 		for (auto& component : m_components)

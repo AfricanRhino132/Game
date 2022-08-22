@@ -36,7 +36,7 @@
     <Filter Include="Source\Serialization">
       <UniqueIdentifier>{ae1037b8-26f9-46b5-a9f1-cf3f74301f6e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics">
+    <Filter Include="Source\Physics">
       <UniqueIdentifier>{5e89ab0c-d65c-41c4-97c5-b9bc04fffa9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -159,7 +159,10 @@
       <Filter>Source\Components</Filter>
     </ClInclude>
     <ClInclude Include="Physics\PhysicsSystem.h">
-      <Filter>Physics</Filter>
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RBPhysicsComponent.h">
+      <Filter>Source\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -248,7 +251,10 @@
       <Filter>Source\Components</Filter>
     </ClCompile>
     <ClCompile Include="Physics\PhysicsSystem.cpp">
-      <Filter>Physics</Filter>
+      <Filter>Source\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\RBPhysicsComponent.cpp">
+      <Filter>Source\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

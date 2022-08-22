@@ -11,16 +11,16 @@ namespace neu
 
 	class Game;
 
-	class Scene : public ISerializable
+	class Scene : public GameObject, public ISerializable
 	{
 	public:
 		Scene() = default;
 		Scene(Game* game) : m_game { game } {};
 		~Scene() = default;
 
-		
+		void Initialize() override;
 
-		void Update();
+		void Update() override;
 		void Draw(Renderer& renderer);
 
 		virtual bool Write(const rapidjson::Value& value) const override;

@@ -6,6 +6,14 @@
 
 namespace neu
 {
+	void Scene::Initialize()
+	{
+		for (auto& actor : m_actors)
+		{
+			actor->Initialize();
+		}
+	}
+
 	void Scene::Update()
 	{
 		auto iter = m_actors.begin();
@@ -98,23 +106,5 @@ namespace neu
 		actor->m_scene = this;
 		m_actors.push_back(std::move(actor));
 	}
-
-	/*void Scene::RemoveActor(Actor* actor)
-	{
-		auto begin = m_actors.begin();
-		auto end = m_actors.end();
-		while (begin != end)
-		{
-			if (actor == begin->get())
-			{
-				begin = m_actors.erase(begin);
-			}
-			else
-			{
-				begin++;
-			}
-		}
-	}
-*/
 
 }

@@ -11,6 +11,8 @@ namespace neu
 		Component() = default;
 		~Component() = default;
 
+		virtual void Initialize() override {};
+
 		virtual void Update() = 0;
 
 		friend class Actor;
