@@ -14,7 +14,6 @@ namespace neu
 	void RBPhysicsComponent::Initialize()
 	{
 		m_body = g_physics.CreateBody(m_owner->m_transform.position, m_owner->m_transform.rotation, data);
-
 		m_body->SetGravityScale(data.gravity_scale);
 		m_body->SetLinearDamping(damping);
 	}
@@ -29,8 +28,8 @@ namespace neu
 		PhysicsComponent::Read(value);
 
 		READ_DATA(value, data.gravity_scale);
-		READ_DATA(value, data.constrain_angle);
 		READ_DATA(value, data.is_dynamic);
+		READ_DATA(value, data.constrain_angle);
 
 		return true;
 	}

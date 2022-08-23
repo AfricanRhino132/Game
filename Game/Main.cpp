@@ -15,7 +15,7 @@ int main()
 
     neu::Engine::Instance().Register();
 
-    neu::g_renderer.CreateWindow("Neumont", 1600, 1200);
+    neu::g_renderer.CreateWindow("Neumont", 800, 600);
     neu::g_renderer.SetClearColor(neu::Color::black);
 
     neu::Scene scene;
@@ -50,7 +50,9 @@ int main()
         neu::g_renderer.EndFrame();
     }
 
+    neu::g_physics.Shutdown();
     neu::g_renderer.Shutdown();
     neu::g_audioSystem.Shutdown();
     neu::g_resources.Shutdown();
+    neu::g_inputSystem.Shutdown();
 }

@@ -164,6 +164,12 @@
     <ClInclude Include="Components\RBPhysicsComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Physics\Collision.h">
+      <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CollisionComponent.h">
+      <Filter>Source\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -256,15 +262,8 @@
     <ClCompile Include="Components\RBPhysicsComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\Build\Assets\level.txt">
-      <Filter>Resources</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Build\Assets\Sprites\MetroidVania\Ghost-Files\PNG\ghost-idle.png">
-      <Filter>Resources</Filter>
-    </Image>
+    <ClCompile Include="Components\CollisionComponent.cpp">
+      <Filter>Source\Components</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

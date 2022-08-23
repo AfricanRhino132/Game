@@ -12,41 +12,37 @@ namespace neu
 
 		if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)
 		{
-			m_owner->m_transform.rotation -= 180 * g_time.deltaTime;
+			direction = Vector2::left;
 		}
 		if (g_inputSystem.GetKeyState(key_d) == InputSystem::State::Held)
 		{
-			m_owner->m_transform.rotation += 180 * g_time.deltaTime;
+			direction = Vector2::right;
 		}
-		/*if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)
-		{
-			direction = Vector2::down;
-		}*/
-		float thrust = 0;
+
 		if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
 		{
-			thrust = speed;
+			direction = Vector2::up;
+		}
+
+		if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)
+		{
+			direction = Vector2::down;
 		}
 
 		auto component = m_owner->GetComponent<PhysicsComponent>();
 
 		if (component)
 		{
-			Vector2 force = Vector2::Rotate(Vector2::right, math::DegToRad(m_owner->m_transform.rotation)) * thrust;
-
-			component->ApplyForce(force);
-
+			component->ApplyForce(direction * speed);
 		}
-
-		m_owner->m_transform.position += direction * 300 * neu::g_time.deltaTime;
 
 		if (g_inputSystem.GetKeyState(key_space) == InputSystem::State::Pressed)
 		{
-			auto component = m_owner->GetComponent<AudioComponent>();
+			auto component = m_owner->GetComponent<PhysicsComponent>();
 
 			if (component)
 			{
-				component->Play();
+				component->ApplyForce(Vector2::up * 30);
 			}
 		}
 	}

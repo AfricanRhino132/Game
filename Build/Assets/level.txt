@@ -2,6 +2,55 @@
    "actors":[
       {
          "type":"Actor",
+         "transform":{
+            "position":[
+               400,
+               300
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "texture_name":"Sprites/background.png"
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "transform":{
+            "position":[
+               400,
+               500
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "data.is_dynamic":false,
+               "data.gravity_scale":9270862
+            },
+            {
+               "type":"CollisionComponent",
+               "data.size":[
+                  800,
+                  24
+               ],
+               "data.restitution":0.0
+            }
+         ]
+      },
+      {
+         "type":"Actor",
          "name":"Player",
          "tag":"Player",
          "transform":{
@@ -18,21 +67,29 @@
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":500
+               "speed":5
             },
             {
                "type":"SpriteAnimComponent",
                "texture_name":"Sprites/bannerspritesheet.png",
-               "fps" : 6.0,
-               "num_columns" : 6,
-               "num_rows" : 1,
-               "start_frame" : 1,
-               "end_frame" : 6
-
+               "fps":6.0,
+               "num_columns":6,
+               "num_rows":1,
+               "start_frame":1,
+               "end_frame":6
             },
             {
-               "type":"PhysicsComponent",
-               "damping": 1.0
+               "type":"RBPhysicsComponent",
+               "damping":1.0,
+               "data.constrain_angle": true
+            },
+            {
+               "type":"CollisionComponent",
+               "data.size":[
+                  16,
+                  16
+               ],
+               "data.restitution":0.0
             }
          ]
       }

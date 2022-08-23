@@ -26,6 +26,12 @@
       <Project>{286589e9-ee75-4bdd-b9ec-9dcc02d7bba9}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Build\Assets\Sprites\MetroidVania\Ghost-Files\PNG\ghost-idle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Build\Assets\level.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

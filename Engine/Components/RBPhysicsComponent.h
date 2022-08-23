@@ -19,6 +19,8 @@ namespace neu
 
 		virtual void ApplyForce(const Vector2& force);
 
+		friend class CollisionComponent;
+
 	private:
 		PhysicsSystem::RigidBodyData data;
 		b2Body* m_body = nullptr;
