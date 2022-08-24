@@ -1,5 +1,8 @@
 #include "Font.h" 
+#include "Math/Color.h"
+#include "Core/Logger.h"
 
+#include <SDL_surface.h>
 #include <SDL_ttf.h> 
 #include <iostream>
 
@@ -45,5 +48,19 @@ namespace neu
 		return m_ttfFont;
 		// !! use filename.c_str() to get the c-style string 
 		// !! assign the return value of TTF_OpenFont to m_ttfFont 
+	}
+
+	SDL_Surface* Font::CreateSurface(const std::string& text, const Color& color)
+	{
+		SDL_Color c = *((SDL_Color*)(&color));
+
+		SDL_Surface* surface = TTF_RenderText_Solid(m_ttfFont, text.c_str(), c);
+
+		if (!surface)
+		{
+			LOG(SDL_GetError());
+		}
+
+		return surface;
 	}
 }
