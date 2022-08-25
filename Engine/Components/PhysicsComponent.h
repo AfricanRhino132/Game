@@ -8,6 +8,8 @@ namespace neu
 	public:
 		PhysicsComponent() = default;
 
+		CLASS_DECLARATION(PhysicsComponent)
+
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 

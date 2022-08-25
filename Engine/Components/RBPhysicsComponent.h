@@ -10,6 +10,8 @@ namespace neu
 		RBPhysicsComponent() = default;
 		~RBPhysicsComponent();
 
+		CLASS_DECLARATION(RBPhysicsComponent)
+
 		void Initialize() override;
 
 		virtual bool Write(const rapidjson::Value& value) const override;

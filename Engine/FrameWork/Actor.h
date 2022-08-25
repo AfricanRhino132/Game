@@ -13,9 +13,12 @@ namespace neu
 	{
 	public:
 		Actor() = default;
+		Actor(const Actor& other);
 		Actor(const Transform& transform) : m_transform{ transform } {}
 
 		virtual void Initialize() override;
+
+		CLASS_DECLARATION(Actor)
 
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
@@ -34,8 +37,6 @@ namespace neu
 
 		virtual void OnCollision(Actor* other) {};
 
-		bool IsDead() { return m_dead; }
-
 		const std::string& GetTag() { return tag; }
 		void SetTag(const std::string& tag) { this->tag = tag; }
 
@@ -53,11 +54,6 @@ namespace neu
 		bool m_destroy = false;
 
 		Scene* m_scene = nullptr;
-
-		Vector2 m_velocity;
-		float m_damping = 1;
-
-		bool m_dead = false;
 
 		Actor* m_parent = nullptr;
 

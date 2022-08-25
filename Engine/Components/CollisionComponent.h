@@ -15,6 +15,8 @@ namespace neu
 	public:
 		virtual void Initialize() override;
 
+		CLASS_DECLARATION(CollisionComponent)
+
 		virtual bool Write(const rapidjson::Value& value) const override;
 
 		virtual bool Read(const rapidjson::Value& value) override;

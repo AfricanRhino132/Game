@@ -27,6 +27,14 @@ int main()
     scene.Read(document);
     scene.Initialize();
 
+    auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
+
+    actor->m_transform.position = { 600, 100 };
+
+    actor->Initialize();
+
+    scene.Add(std::move(actor));
+
     bool quit = false;
     while (!quit)
     {

@@ -10,6 +10,8 @@ namespace neu
 		AudioComponent() = default;
 		~AudioComponent(); // !! this is added (stop play when destroyed) 
 
+		CLASS_DECLARATION(AudioComponent)
+
 		void Initialize() override; // !! this is added (create definition) 
 		void Update() override;
 

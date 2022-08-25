@@ -1,17 +1,17 @@
 {
    "actors":[
-	{ 
-         "type":"Actor", 
-         "name":"Music", 
-         "components":[ 
-            { 
-               "type":"AudioComponent", 
-               "sound_name":"audio/bgSong.wav", 
-               "loop":true, 
-               "play_on_start":true 
-            } 
-         ] 
-      }, 
+      {
+         "type":"Actor",
+         "name":"Music",
+         "components":[
+            {
+               "type":"AudioComponent",
+               "sound_name":"audio/bgSong.wav",
+               "loop":true,
+               "play_on_start":true
+            }
+         ]
+      },
       {
          "type":"Actor",
          "transform":{
@@ -32,34 +32,42 @@
             }
          ]
       },
-      { 
-         "type":"Actor", 
-         "name":"Text", 
-         "transform":{ 
-            "position":[ 
-               40, 
-               30 
-            ], 
-            "scale":[ 
-               1, 
-               1 
-            ], 
-            "rotation":0 
-         }, 
-         "components":[ 
-            { 
-               "type":"TextComponent", 
-               "text":"Hello World!", 
-               "font_name":"Fonts/Arcade.ttf", 
-               "font_size":16, 
-               "registration": [0.0, 0.5], 
-               "color":[255, 255, 0, 255] 
-            } 
-         ] 
-      }, 
       {
          "type":"Actor",
-         "name": "Floor",
+         "name":"Text",
+         "transform":{
+            "position":[
+               40,
+               30
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"TextComponent",
+               "text":"Hello World!",
+               "font_name":"Fonts/Arcade.ttf",
+               "font_size":16,
+               "registration":[
+                  0.0,
+                  0.5
+               ],
+               "color":[
+                  255,
+                  255,
+                  0,
+                  255
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Floor",
          "transform":{
             "position":[
                400,
@@ -75,7 +83,7 @@
             {
                "type":"RBPhysicsComponent",
                "data.is_dynamic":false,
-               "data.gravity_scale":9270862
+               "data.gravity_scale":0
             },
             {
                "type":"CollisionComponent",
@@ -119,13 +127,13 @@
             {
                "type":"RBPhysicsComponent",
                "damping":1.0,
-               "data.constrain_angle": true
+               "data.constrain_angle":true
             },
-            { 
-               "type":"AudioComponent", 
-               "sound_name":"audio/SpaceLaserShot.wav", 
-               "play_on_start":true 
-            }, 
+            {
+               "type":"AudioComponent",
+               "sound_name":"audio/SpaceLaserShot.wav",
+               "play_on_start":true
+            },
             {
                "type":"CollisionComponent",
                "data.size":[
@@ -133,6 +141,45 @@
                   16
                ],
                "data.restitution":0.0
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Coin",
+         "prefab":true,
+         "tag":"Pickup",
+         "transform":{
+            "position":[
+               600,
+               200
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "damping":0.4,
+               "data.gravity_scale":1,
+               "data.constrain_angle":true
+            },
+            {
+               "type":"CollisionComponent",
+               "data.size": [ 16 , 16 ],
+               "data.restitution":0.7
+            },
+            {
+               "type":"SpriteAnimComponent",
+               "texture_name":"Sprites/coin.png",
+               "fps":12,
+               "num_columns":8,
+               "num_rows":1,
+               "start_frame":1,
+               "end_frame":8
             }
          ]
       }

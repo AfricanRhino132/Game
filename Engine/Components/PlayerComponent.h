@@ -9,6 +9,8 @@ namespace neu
 	public:
 		PlayerComponent() = default;
 
+		CLASS_DECLARATION(PlayerComponent)
+
 		void Initialize() override;
 
 		virtual bool Write(const rapidjson::Value& value) const override;
