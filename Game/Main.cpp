@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "TrashGame.h"
 
 #include <iostream>
 
@@ -18,22 +19,9 @@ int main()
     neu::g_renderer.CreateWindow("Neumont", 800, 600);
     neu::g_renderer.SetClearColor(neu::Color::black);
 
-    neu::Scene scene;
+    std::unique_ptr<TrashGame> game = std::make_unique<TrashGame>();
 
-    rapidjson::Document document;
-    bool success = neu::json::Load("level.txt", document);
-    assert(success);
-
-    scene.Read(document);
-    scene.Initialize();
-
-    auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
-
-    actor->m_transform.position = { 600, 100 };
-
-    actor->Initialize();
-
-    scene.Add(std::move(actor));
+    game->Initialize();
 
     bool quit = false;
     while (!quit)
@@ -49,14 +37,18 @@ int main()
             quit = true;
         }
 
-        scene.Update();
+        game->Update();
 
         //render
         neu::g_renderer.BeginFrame();
         // draw
-        scene.Draw(neu::g_renderer);
+        game->Draw(neu::g_renderer);
         neu::g_renderer.EndFrame();
     }
+    game->Shutdown();
+    game.reset();
+
+    neu::Factory::Instance().Shutdown();
 
     neu::g_physics.Shutdown();
     neu::g_renderer.Shutdown();

@@ -42,7 +42,7 @@ namespace neu
 
 			if (component)
 			{
-				component->ApplyForce(Vector2::up * 30);
+				component->ApplyForce(Vector2::up * 90);
 			}
 		}
 	}

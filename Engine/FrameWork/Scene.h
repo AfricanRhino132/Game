@@ -33,8 +33,6 @@ namespace neu
 
 		void Clear();
 
-		//void RemoveActor(Actor* actor);
-
 		template<typename T>
 		T* GetActor();
 
@@ -43,7 +41,7 @@ namespace neu
 		void SetGame(Game* game) { m_game = game; }
 
 	private:
-		Game* m_game;
+		Game* m_game = nullptr;
 
 		std::list<std::unique_ptr<Actor>> m_actors;
 

@@ -30,6 +30,8 @@ namespace neu
 		void SetCollisionEnter(functionPtr function) { m_enterFunction = function; }
 		void SetCollisionExit(functionPtr function) { m_exitFunction = function; }
 
+		friend class Actor;
+
 	private:
 		PhysicsSystem::CollisionData data;
 

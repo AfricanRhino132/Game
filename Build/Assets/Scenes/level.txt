@@ -113,7 +113,7 @@
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":5
+               "speed":20
             },
             {
                "type":"SpriteAnimComponent",
@@ -137,49 +137,10 @@
             {
                "type":"CollisionComponent",
                "data.size":[
-                  16,
-                  16
+                  32,
+                  32
                ],
                "data.restitution":0.0
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "name":"Coin",
-         "prefab":true,
-         "tag":"Pickup",
-         "transform":{
-            "position":[
-               600,
-               200
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "damping":0.4,
-               "data.gravity_scale":1,
-               "data.constrain_angle":true
-            },
-            {
-               "type":"CollisionComponent",
-               "data.size": [ 16 , 16 ],
-               "data.restitution":0.7
-            },
-            {
-               "type":"SpriteAnimComponent",
-               "texture_name":"Sprites/coin.png",
-               "fps":12,
-               "num_columns":8,
-               "num_rows":1,
-               "start_frame":1,
-               "end_frame":8
             }
          ]
       }

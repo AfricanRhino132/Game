@@ -54,7 +54,7 @@ namespace neu
 
 	void Renderer::DrawPoint(float x1, float y1)
 	{
-		SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+		SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
 		SDL_RenderDrawPointF(m_renderer, x1, y1);
 	}
 

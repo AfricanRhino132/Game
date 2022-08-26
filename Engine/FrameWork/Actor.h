@@ -1,8 +1,9 @@
 #pragma once
 #include "GameObject.h"
 #include "Component.h"
-#include <vector>
+#include "Components/CollisionComponent.h"
 
+#include <vector>
 
 namespace neu
 {
@@ -43,6 +44,11 @@ namespace neu
 		const std::string& GetName() { return name; }
 		void SetName(const std::string& name) { this->name = name; }
 
+		void SetActive(bool active = true) { this->active = active; }
+		bool IsActive() { return active; }
+
+		Scene* GetScene() { return m_scene; }
+
 		friend class Scene;
 		
 		Transform m_transform;
@@ -52,6 +58,8 @@ namespace neu
 		std::string tag;
 
 		bool m_destroy = false;
+
+		bool active = true;
 
 		Scene* m_scene = nullptr;
 

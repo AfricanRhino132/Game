@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TrashGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -30,7 +31,12 @@
     <Image Include="..\Build\Assets\Sprites\MetroidVania\Ghost-Files\PNG\ghost-idle.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Build\Assets\level.txt" />
+    <Text Include="..\Build\Assets\Scenes\level.txt" />
+    <Text Include="..\Build\Assets\Scenes\Prefabs.txt" />
+    <Text Include="..\Build\Assets\Scenes\Tilemap.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TrashGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
