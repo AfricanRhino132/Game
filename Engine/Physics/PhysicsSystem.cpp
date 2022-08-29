@@ -49,9 +49,6 @@ namespace neu
 		b2PolygonShape shape;
 		Vector2 worldSize = PhysicsSystem::ScreenToWorld(data.size * 0.5f);
 		
-		std::cout << worldSize.x << std::endl;
-		std::cout << worldSize.y << std::endl;
-		
 		shape.SetAsBox(worldSize.x, worldSize.y);
 
 		b2FixtureDef fixtureDef;

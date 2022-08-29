@@ -34,6 +34,11 @@ namespace neu
 
 	void Scene::Clear()
 	{
+		for (auto& actor : m_actors)
+		{
+			actor->SetDestroy();
+		}
+
 		m_actors.clear();
 	}
 

@@ -47,6 +47,9 @@ namespace neu
 		void SetActive(bool active = true) { this->active = active; }
 		bool IsActive() { return active; }
 
+		void SetDestroy(bool destroy = true) { m_destroy = destroy; }
+		bool IsDestroyed() { return m_destroy; }
+
 		Scene* GetScene() { return m_scene; }
 
 		friend class Scene;

@@ -182,6 +182,12 @@
     <ClInclude Include="Components\TilemapComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
+    <ClInclude Include="FrameWork\EventManager.h">
+      <Filter>Source\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Event.h">
+      <Filter>Source\FrameWork</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -288,6 +294,9 @@
     </ClCompile>
     <ClCompile Include="Components\TilemapComponent.cpp">
       <Filter>Source\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWork\EventManager.cpp">
+      <Filter>Source\FrameWork</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
