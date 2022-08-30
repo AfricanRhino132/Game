@@ -67,36 +67,6 @@
       },
       {
          "type":"Actor",
-         "name":"Floor",
-         "transform":{
-            "position":[
-               400,
-               500
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "data.is_dynamic":false,
-               "data.gravity_scale":0
-            },
-            {
-               "type":"CollisionComponent",
-               "data.size":[
-                  800,
-                  24
-               ],
-               "data.restitution":0.0
-            }
-         ]
-      },
-      {
-         "type":"Actor",
          "name":"Player",
          "tag":"Player",
          "transform":{
