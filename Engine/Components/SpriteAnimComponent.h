@@ -19,8 +19,9 @@ namespace neu
 
 		virtual void Draw(Renderer& renderer) override;
 
+		Rect& GetSource() override;
+
 	public:
-		Rect source;
 		std::shared_ptr<Texture> m_texture;
 
 		float fps = 0;

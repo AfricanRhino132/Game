@@ -19,7 +19,6 @@ namespace neu
 		virtual void Draw(Renderer& renderer) override;
 
 	public:
-		Rect source;
 		std::shared_ptr<Texture> m_texture;
 	};
 }

@@ -104,10 +104,6 @@
                400,
                300
             ],
-            "scale":[
-               2,
-               2
-            ],
             "rotation":0
          },
          "components":[
@@ -136,10 +132,6 @@
             },
             {
                "type":"CollisionComponent",
-               "data.size":[
-                  32,
-                  32
-               ],
                "data.restitution":0.0
             }
          ]
