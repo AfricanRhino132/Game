@@ -3,7 +3,7 @@
 #include "FrameWork/Event.h"
 
 
-class TrashGame : public neu::Game
+class TrashGame : public neu::Game, public neu::INotify
 {
 public:
 	enum class gameState
@@ -22,6 +22,8 @@ public:
 	virtual void Update() override;
 	virtual void Draw(neu::Renderer& renderer) override;
 
+	virtual void OnNotify(const neu::Event& event) override;
+
 	void OnAddPoints(const neu::Event& event);
 	void OnPlayerDead(const neu::Event& event);
 
@@ -30,4 +32,5 @@ private :
 
 	float m_stateTimer = 0;
 	int m_lives = 3;
+
 };

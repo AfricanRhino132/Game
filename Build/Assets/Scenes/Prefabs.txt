@@ -2,9 +2,67 @@
    "actors":[
       {
          "type":"Actor",
+         "name":"Player",
+         "tag":"Player",
+         "prefab":true,
+         "transform":{
+            "position":[
+               400,
+               300
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"PlayerComponent",
+               "speed":60
+            },
+            {
+               "type":"SpriteAnimComponent",
+               "default_sequence":"idle",
+               "sequences":[
+                  {
+                     "sequence.name":"run",
+                     "sequence.fps":12,
+                     "sequence.num_columns":12,
+                     "sequence.num_rows":1,
+                     "sequence.start_frame":1,
+                     "sequence.end_frame":12,
+                     "texture_name":"Sprites/gothic-hero-run.png"
+                  },
+                  {
+                     "sequence.name":"idle",
+                     "sequence.fps":12,
+                     "sequence.num_columns":4,
+                     "sequence.num_rows":1,
+                     "sequence.start_frame":1,
+                     "sequence.end_frame":4,
+                     "texture_name":"Sprites/gothic-hero-idle.png"
+                  }
+               ]
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "damping":1.0,
+               "data.constrain_angle":true
+            },
+            {
+               "type":"AudioComponent",
+               "sound_name":"audio/SpaceLaserShot.wav",
+               "play_on_start":true
+            },
+            {
+               "type":"CollisionComponent",
+               "data.restitution":0.0
+            }
+         ]
+      },
+      {
+         "type":"Actor",
          "name":"Coin",
          "prefab":true,
          "tag":"Pickup",
+         "lifespan":4,
          "transform":{
             "position":[
                600,
@@ -29,13 +87,74 @@
             },
             {
                "type":"SpriteAnimComponent",
-               "texture_name":"Sprites/coin.png",
-               "fps":12,
-               "num_columns":8,
-               "num_rows":1,
-               "start_frame":1,
-               "end_frame":8
+               "default_sequence":"idle",
+               "sequences":[
+                  {
+                     "sequence.name":"idle",
+                     "sequence.fps":12,
+                     "sequence.num_columns":8,
+                     "sequence.num_rows":1,
+                     "sequence.start_frame":1,
+                     "sequence.end_frame":8,
+                     "texture_name":"Sprites/coin.png"
+                  }
+               ]
             }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Ghost",
+         "prefab":true,
+         "tag":"Enemy",
+         "transform":{
+            "position":[
+               600,
+               200
+            ],
+            "scale":[
+               1,
+               1
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "damping":0.4,
+               "data.gravity_scale":0,
+               "data.constrain_angle":true
+            },
+            {
+               "type":"EnemyComponent",
+               "speed":20,
+               "health":30,
+               "damage":10
+            },
+            {
+               "type":"CollisionComponent",
+               "data.restitution":0.7,
+               "scale_offset":[
+                  0.3,
+                  0.5
+               ],
+               "data.is_trigger":true
+            },
+            { 
+                "type":"SpriteAnimComponent", 
+                "default_sequence":"idle", 
+                "sequences":[ 
+                    { 
+                        "sequence.name":"idle", 
+                        "sequence.fps":12, 
+                        "sequence.num_columns":7, 
+                        "sequence.num_rows":1, 
+                        "sequence.start_frame":1, 
+                        "sequence.end_frame":7, 
+                        "texture_name":"Sprites/ghost-idle.png" 
+                    } 
+                ] 
+            } 
          ]
       }
    ]

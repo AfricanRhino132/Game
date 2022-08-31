@@ -1,10 +1,10 @@
 #pragma once
-#include "FrameWork/Component.h"
-#include "Physics/Collision.h"
+
+#include "CharacterComponent.h"
 
 namespace neu
 {
-	class PlayerComponent : public Component, public ICollision
+	class PlayerComponent : public CharacterComponent
 	{
 	public:
 		PlayerComponent() = default;
@@ -19,9 +19,13 @@ namespace neu
 		virtual void OnCollisionEnter(Actor* other) override;
 		virtual void OnCollisionExit(Actor* other) override;
 
+		virtual void OnNotify(const Event& event) override;
+
 		void Update() override;
 
 	public:
-		float speed = 0;
+		float jump = 3000;		
+
+		int m_groundCount = 0;
 	};
 }

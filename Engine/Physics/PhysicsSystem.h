@@ -40,6 +40,7 @@ namespace neu
 		b2Body* CreateBody(const Vector2& position, float angle, const RigidBodyData& data);
 
 		void SetCollisionBox(b2Body* body, const CollisionData& data, class Actor* actor = nullptr);
+		void SetCollisionBoxStatic(b2Body* body, const CollisionData& data, class Actor* actor = nullptr);
 
 		void DestroyBody(b2Body* body);
 

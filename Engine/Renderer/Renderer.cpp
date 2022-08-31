@@ -13,6 +13,9 @@ namespace neu
 		SDL_Init(SDL_INIT_VIDEO);
 		TTF_Init();
 		IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
+
+		m_view = Matrix3x3::identity;
+		m_viewport = Matrix3x3::identity;
 	}
 
 	void Renderer::Shutdown()
@@ -34,6 +37,8 @@ namespace neu
 		m_window = SDL_CreateWindow(name, 100, 100, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
 		m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
+
+		SDL_SetWindowGrab(m_window, SDL_TRUE );
 	}
 	void Renderer::BeginFrame()
 	{
@@ -115,15 +120,17 @@ namespace neu
 		SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
 	}
 
-	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration)
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& registration, bool flipH)
 	{
+		Matrix3x3 mx = m_viewport * m_view * transform.matrix;
+
 		Vector2 size = Vector2{ source.w, source.h};
 
-		size *= transform.scale;
+		size *= mx.GetScale();
 
 		Vector2 origin = (size * registration);
 
-		Vector2 tposition = transform.position - origin;
+		Vector2 tposition = mx.GetTranslation() - origin;
 
 		SDL_Rect dest;
 		// !! make sure to cast to int to prevent compiler warnings 
@@ -136,6 +143,6 @@ namespace neu
 
 		SDL_Rect src{ source.x, source.y, source.w, source.h };
 
-		SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, transform.rotation, &center, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, math::RadToDeg(mx.GetRotation()), &center, (SDL_RendererFlip)flipH);
 	}
 }

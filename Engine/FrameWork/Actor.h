@@ -64,6 +64,8 @@ namespace neu
 
 		bool active = true;
 
+		float lifespan = 0;
+
 		Scene* m_scene = nullptr;
 
 		Actor* m_parent = nullptr;

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameComponents\EnemyComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TrashGame.cpp" />
   </ItemGroup>
@@ -36,6 +37,7 @@
     <Text Include="..\Build\Assets\Scenes\Tilemap.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameComponents\EnemyComponent.h" />
     <ClInclude Include="TrashGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

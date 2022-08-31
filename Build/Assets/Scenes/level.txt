@@ -1,5 +1,27 @@
 {
    "actors":[
+        { 
+          "type":"Actor", 
+          "name":"Camera", 
+          "transform":{ 
+              "position":[ 
+                  400, 
+                  300 
+              ], 
+              "scale":[ 
+                  1, 
+                  1 
+              ], 
+              "rotation":0 
+          }, 
+          "components":[ 
+              { 
+                  "type":"CameraComponent", 
+                  "viewport_size": [800, 600],
+                  "camera_speed": 1000
+              } 
+          ] 
+      }, 
       {
          "type":"Actor",
          "name":"Music",
@@ -62,47 +84,6 @@
                   0,
                   255
                ]
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "name":"Player",
-         "tag":"Player",
-         "transform":{
-            "position":[
-               400,
-               300
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"PlayerComponent",
-               "speed":20
-            },
-            {
-               "type":"SpriteAnimComponent",
-               "texture_name":"Sprites/bannerspritesheet.png",
-               "fps":6.0,
-               "num_columns":6,
-               "num_rows":1,
-               "start_frame":1,
-               "end_frame":6
-            },
-            {
-               "type":"RBPhysicsComponent",
-               "damping":1.0,
-               "data.constrain_angle":true
-            },
-            {
-               "type":"AudioComponent",
-               "sound_name":"audio/SpaceLaserShot.wav",
-               "play_on_start":true
-            },
-            {
-               "type":"CollisionComponent",
-               "data.restitution":0.0
             }
          ]
       }

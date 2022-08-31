@@ -23,6 +23,7 @@ namespace neu
 		REGISTER_CLASS(SpriteAnimComponent);
 		REGISTER_CLASS(TextComponent);
 		REGISTER_CLASS(TilemapComponent);
+		REGISTER_CLASS(CameraComponent);
 		
 	}
 }

@@ -1,8 +1,11 @@
 #include "TrashGame.h"
 #include "Engine.h"
+#include "GameComponents/EnemyComponent.h"
 
 void TrashGame::Initialize()
 {
+    REGISTER_CLASS(EnemyComponent);
+
 	m_scene = std::make_unique<neu::Scene>();
 
     rapidjson::Document document;
@@ -49,11 +52,34 @@ void TrashGame::Update()
         break;
 
     case TrashGame::gameState::startLevel:
+
+    
+        {   
+            auto player = neu::Factory::Instance().Create<neu::Actor>("Player");
+
+            player->m_transform.position = { 400, 300 };
+
+            player->Initialize();
+
+            m_scene->Add(std::move(player));
+        }
+
         for (int i = 0; i < 10; i++)
         {
             auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
 
             actor->m_transform.position = { neu::random(600), neu::random(100)};
+
+            actor->Initialize();
+
+            m_scene->Add(std::move(actor));
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            auto actor = neu::Factory::Instance().Create<neu::Actor>("Ghost");
+
+            actor->m_transform.position = { neu::random(600), neu::random(100) };
 
             actor->Initialize();
 
@@ -91,8 +117,8 @@ void TrashGame::Draw(neu::Renderer& renderer)
 
 void TrashGame::OnAddPoints(const neu::Event& event)
 {
-    std::cout << event.name << std::endl;
-    std::cout << GetScore() << std::endl;
+
+    m_score += 100;
 }
 
 void TrashGame::OnPlayerDead(const neu::Event& event)
@@ -100,4 +126,12 @@ void TrashGame::OnPlayerDead(const neu::Event& event)
     m_gameState = gameState::playerDead;
     m_stateTimer = 3;
     m_lives--;
+}
+
+void TrashGame::OnNotify(const neu::Event& event)
+{
+    if (event.name == "EVENT_ADD_POINTS")
+    {
+        OnAddPoints(event);
+    }
 }

@@ -1,4 +1,5 @@
 #include "InputSystem.h"
+
 #include <SDL.h>
 #include <iostream>
 
@@ -28,6 +29,7 @@ namespace neu
 		std::copy(keyboardState, keyboardState + m_numKeys, m_keyboardState.begin());
 
 		m_prevKeyboardState = m_keyboardState;
+
 	}
 
 	void InputSystem::Shutdown()

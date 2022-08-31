@@ -2,6 +2,7 @@
 #include "Renderer/Renderer.h"
 #include "Components/RenderComponent.h"
 #include "Factory.h"
+#include "Engine.h"
 
 namespace neu
 {
@@ -11,6 +12,8 @@ namespace neu
 		tag = other.tag;
 
 		m_scene = other.m_scene;
+
+		lifespan = other.lifespan;
 
 		m_transform = other.m_transform;
 		
@@ -40,6 +43,15 @@ namespace neu
 		if (!active) 
 		{
 			return;
+		}
+
+		if (lifespan != 0)
+		{
+			lifespan -= g_time.deltaTime;
+			if (lifespan <= 0)
+			{
+				SetDestroy();
+			}
 		}
 
 		for (auto& component : m_components)
@@ -110,6 +122,7 @@ namespace neu
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
 		READ_DATA(value, active);
+		READ_DATA(value, lifespan);
 		
 		if (value.HasMember("transform"))
 		{

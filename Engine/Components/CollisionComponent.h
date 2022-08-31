@@ -35,6 +35,8 @@ namespace neu
 	private:
 		PhysicsSystem::CollisionData data;
 
+		Vector2 scale_offset{ 1.0f, 1.0f };
+
 		functionPtr m_enterFunction;
 		functionPtr m_exitFunction;
 	};
