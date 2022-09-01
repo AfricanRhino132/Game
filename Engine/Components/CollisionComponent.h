@@ -30,6 +30,9 @@ namespace neu
 		void SetCollisionEnter(functionPtr function) { m_enterFunction = function; }
 		void SetCollisionExit(functionPtr function) { m_exitFunction = function; }
 
+		const Vector2& GetSize() { return data.size; }
+		void SetSize(const Vector2& size) { data.size = size; }
+
 		friend class Actor;
 
 	private:

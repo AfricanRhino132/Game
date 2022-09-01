@@ -13,6 +13,7 @@ namespace neu
         if (frameTimer >= 1.0f / m_sequence->fps)
         {
             frameTimer = 0;
+            lastFrame = frame;
             frame++;
             if (frame > m_sequence->end_frame)
             {

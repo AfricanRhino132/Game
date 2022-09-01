@@ -20,5 +20,13 @@ namespace neu
 		float health = 100;
 		float damage = 10;
 		float speed = 0;
+
+		Vector2 prevDirection{ Vector2::zero };
+
+		float atkTimer = 0;
+
+		bool isAttacking = false;
+
+		Actor* colliding = nullptr;
 	};
 }

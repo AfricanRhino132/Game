@@ -21,7 +21,9 @@ public:
 protected:
 	float follow_dist = 0;
 
-	float attack_range = 0;
+	float attack_range = 50;
+
+	std::string projectile_name;
 
 	bool isFollowing = false;
 

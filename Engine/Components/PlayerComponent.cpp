@@ -36,23 +36,65 @@ namespace neu
 			direction = Vector2::down;
 		}
 
-		if (g_inputSystem.GetButtonState(mouse_left) == neu::InputSystem::State::Pressed && atkTimer <= 0)
+		if (g_inputSystem.GetKeyState(key_shiftL) == neu::InputSystem::State::Pressed && atkTimer <= 0)
 		{
 			isAttacking = true;
+
+			if (colliding)
+			{
+
+				neu::Vector2 dirToEnemy = colliding->m_transform.position - m_owner->m_transform.position;
+
+				if (std::fabs(dirToEnemy.x) > std::fabs(dirToEnemy.y))
+				{
+					dirToEnemy = dirToEnemy.x > 0 ? neu::Vector2::right : neu::Vector2::left;
+				}
+				else
+				{
+					dirToEnemy = dirToEnemy.y > 0 ? neu::Vector2::down : neu::Vector2::up;
+				}
+
+				if (direction == dirToEnemy)
+				{
+					Event event;
+
+					event.name = "EVENT_DAMAGE";
+					event.data = damage;
+					event.receiver = colliding;
+
+					neu::g_eventManager.Notify(event);
+				}
+			}
 
 			atkTimer = 0.5;
 			
 		}
-
-		Vector2 velocity;
 		auto component = m_owner->GetComponent<PhysicsComponent>();
 
 		if (component)
 		{
 			if (!isAttacking)
 			{
+				if (colliding)
+				{
+					neu::Vector2 dirToEnemy = colliding->m_transform.position - m_owner->m_transform.position;
+
+					if (std::fabs(dirToEnemy.x) > std::fabs(dirToEnemy.y))
+					{
+						dirToEnemy = dirToEnemy.x > 0 ? neu::Vector2::right : neu::Vector2::left;
+					}
+					else
+					{
+						dirToEnemy = dirToEnemy.y > 0 ? neu::Vector2::down : neu::Vector2::up;
+					}
+
+					if (direction == dirToEnemy)
+					{
+						prevDirection = direction;
+						direction = Vector2::zero;
+					}
+				}
 				component->SetLinearVelocity(direction * speed);
-				velocity = direction * speed;
 			}
 			else
 			{
@@ -77,13 +119,13 @@ namespace neu
 		{
 			if (!isAttacking)
 			{
-				if (std::fabs(velocity.x) > 0)
+				if (std::fabs(direction.x) > 0)
 				{
-					animComponent->SetFlipHorizontal(velocity.x > 0);
+					animComponent->SetFlipHorizontal(direction.x > 0);
 
 					animComponent->SetSequence("LeftRun");
 				}
-				else if (std::fabs(velocity.y) > 0)
+				else if (std::fabs(direction.y) > 0)
 				{
 					if (direction == Vector2::down)
 					{
@@ -96,14 +138,14 @@ namespace neu
 				}
 				else
 				{
-					if (prevDirection == Vector2::down)
+					if (prevDirection == Vector2::down || prevDirection == Vector2::up)
 					{
-						animComponent->SetSequence("ForwardIdle");
+						animComponent->SetSequence(prevDirection == Vector2::down ? "ForwardIdle" : "UpIdle");
 					}
 					else
 					{
 						animComponent->SetFlipHorizontal(prevDirection.x > 0);
-						animComponent->SetSequence("ForwardIdle");
+						animComponent->SetSequence("LeftIdle");
 					}
 				}
 			}
@@ -116,7 +158,7 @@ namespace neu
 				}
 				else
 				{
-					direction == Vector2::up ? animComponent->SetSequence("AtkUp") : animComponent->SetSequence("AtkDown");
+					prevDirection == Vector2::up ? animComponent->SetSequence("AtkUp") : animComponent->SetSequence("AtkDown");
 				}
 				
 			}
@@ -162,15 +204,16 @@ namespace neu
 
 			other->SetDestroy();
 		}
+
+		if (other->GetName() == "HitBox")
+		{
+			health -= std::stof(other->GetTag());
+			std::cout << health << std::endl;
+		}
 		
 		if (other->GetTag() == "Enemy")
 		{
-			Event event;
-			event.name = "EVENT_DAMAGE";
-			event.data = damage;
-			event.receiver = other;
-
-			g_eventManager.Notify(event);
+			colliding = other;
 		}
 
 		if (other->GetTag() == "Ground")
@@ -184,6 +227,11 @@ namespace neu
 		if (other->GetTag() == "Ground")
 		{
 			m_groundCount--;
+		}
+
+		if (other->GetTag() == "Enemy")
+		{
+			colliding = nullptr;
 		}
 	}
 

@@ -40,6 +40,7 @@ namespace neu
 	public:
 		int frame = 0;
 		float frameTimer = 0;
+		int lastFrame = 0;
 
 		std::map<std::string, Sequence> m_sequences;
 		Sequence* m_sequence = nullptr;

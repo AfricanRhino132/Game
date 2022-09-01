@@ -30,8 +30,6 @@ void TrashGame::Initialize()
     
     m_scene->Initialize();
 
-    
-
     neu::g_eventManager.Subscribe("EVENT_ADD_POINTS", std::bind(&TrashGame::OnAddPoints, this, std::placeholders::_1));
 }   
 
@@ -57,7 +55,7 @@ void TrashGame::Update()
 
     
         {   
-            auto player = neu::Factory::Instance().Create<neu::Actor>("Player");
+            auto player = neu::Factory::Instance().Create<neu::Actor>("Knight");
 
             player->m_transform.position = { 400, 300 };
 
@@ -79,7 +77,7 @@ void TrashGame::Update()
 
         for (int i = 0; i < 3; i++)
         {
-            auto actor = neu::Factory::Instance().Create<neu::Actor>("Ghost");
+            auto actor = neu::Factory::Instance().Create<neu::Actor>("Goblin");
 
             actor->m_transform.position = { neu::random(600), neu::random(100) };
 

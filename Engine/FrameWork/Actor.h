@@ -52,6 +52,8 @@ namespace neu
 
 		Scene* GetScene() { return m_scene; }
 
+		void SetLifespan(float time) { lifespan = time; }
+
 		friend class Scene;
 		
 		Transform m_transform;
