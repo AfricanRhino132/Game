@@ -24,18 +24,6 @@
       }, 
       {
          "type":"Actor",
-         "name":"Music",
-         "components":[
-            {
-               "type":"AudioComponent",
-               "sound_name":"audio/bgSong.wav",
-               "loop":true,
-               "play_on_start":true
-            }
-         ]
-      },
-      {
-         "type":"Actor",
          "transform":{
             "position":[
                400,
@@ -51,39 +39,6 @@
             {
                "type":"SpriteComponent",
                "texture_name":"Sprites/background.png"
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "name":"Text",
-         "transform":{
-            "position":[
-               40,
-               30
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"TextComponent",
-               "text":"Hello World!",
-               "font_name":"Fonts/Arcade.ttf",
-               "font_size":16,
-               "registration":[
-                  0.0,
-                  0.5
-               ],
-               "color":[
-                  255,
-                  255,
-                  0,
-                  255
-               ]
             }
          ]
       }

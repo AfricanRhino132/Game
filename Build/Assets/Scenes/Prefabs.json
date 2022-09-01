@@ -40,20 +40,6 @@
                      "texture_name":"Sprites/gothic-hero-idle.png"
                   }
                ]
-            },
-            {
-               "type":"RBPhysicsComponent",
-               "damping":1.0,
-               "data.constrain_angle":true
-            },
-            {
-               "type":"AudioComponent",
-               "sound_name":"audio/SpaceLaserShot.wav",
-               "play_on_start":true
-            },
-            {
-               "type":"CollisionComponent",
-               "data.restitution":0.0
             }
          ]
       },

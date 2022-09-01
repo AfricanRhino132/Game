@@ -47,6 +47,7 @@ namespace neu
 			if (component)
 			{
 				component->ApplyForce(Vector2::up * 500);
+				std::cout << "Jump" << std::endl;
 			}
 		}
 
