@@ -28,7 +28,7 @@ namespace neu
 	public:
 		CLASS_DECLARATION(SpriteAnimComponent)
 
-			virtual void Update() override;
+		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 
 		virtual void SetSequence(const std::string& name);

@@ -76,6 +76,7 @@ namespace neu
                 READ_DATA(sequenceValue, sequence.num_rows);
                 READ_DATA(sequenceValue, sequence.start_frame);
                 READ_DATA(sequenceValue, sequence.end_frame);
+                READ_DATA(sequenceValue, sequence.loop);
 
                 std::string texture_name;
                 READ_DATA(sequenceValue, texture_name);

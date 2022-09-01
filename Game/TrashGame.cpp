@@ -1,10 +1,12 @@
 #include "TrashGame.h"
 #include "Engine.h"
 #include "GameComponents/EnemyComponent.h"
+#include "GameComponents/ProjectileComponent.h"
 
 void TrashGame::Initialize()
 {
     REGISTER_CLASS(EnemyComponent);
+    REGISTER_CLASS(ProjectileComponent);
 
 	m_scene = std::make_unique<neu::Scene>();
 

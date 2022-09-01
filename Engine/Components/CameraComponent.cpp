@@ -17,7 +17,7 @@ namespace neu
 
         m_view = mxTranslation * mxRotation;
 
-        if ((g_inputSystem.GetMousePosition().x >= 0 && g_inputSystem.GetMousePosition().x <= 50) || (g_inputSystem.GetMousePosition().x > g_renderer.getScreenWidth() - 50 && g_inputSystem.GetMousePosition().x <= g_renderer.getScreenWidth()))
+        /*if ((g_inputSystem.GetMousePosition().x >= 0 && g_inputSystem.GetMousePosition().x <= 50) || (g_inputSystem.GetMousePosition().x > g_renderer.getScreenWidth() - 50 && g_inputSystem.GetMousePosition().x <= g_renderer.getScreenWidth()))
         {
             Vector2 origin{ g_renderer.getScreenWidth() / 2, g_renderer.getScreenHeight() / 2 };
 
@@ -38,7 +38,7 @@ namespace neu
             dirVec.Normalize();
 
             m_owner->m_transform.position += dirVec * camera_speed * g_time.deltaTime;
-        }
+        }*/
 
         g_renderer.SetViewMatrix(m_view);
     }

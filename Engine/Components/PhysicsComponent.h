@@ -16,6 +16,7 @@ namespace neu
 		void Update() override;
 
 		virtual void ApplyForce(const Vector2& force) { acceleration += force; };
+		virtual void SetLinearVelocity(const Vector2& force) { velocity = force; };
 
 	public:
 

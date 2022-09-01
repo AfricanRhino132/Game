@@ -19,4 +19,11 @@ public:
 	virtual bool Read(const rapidjson::Value& value) override;
 
 protected:
+	float follow_dist = 0;
+
+	float attack_range = 0;
+
+	bool isFollowing = false;
+
+	float atk_timer = 0;
 };

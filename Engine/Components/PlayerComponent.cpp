@@ -10,6 +10,13 @@ namespace neu
 	{
 		Vector2 direction = Vector2::zero;
 
+		atkTimer -= neu::g_time.deltaTime;
+
+		if (atkTimer <= 0)
+		{
+			isAttacking = false;
+		}
+
 		if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)
 		{
 			direction = Vector2::left;
@@ -21,7 +28,7 @@ namespace neu
 
 		if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
 		{
-			//direction = Vector2::up;
+			direction = Vector2::up;
 		}
 
 		if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)
@@ -29,47 +36,102 @@ namespace neu
 			direction = Vector2::down;
 		}
 
+		if (g_inputSystem.GetButtonState(mouse_left) == neu::InputSystem::State::Pressed && atkTimer <= 0)
+		{
+			isAttacking = true;
+
+			atkTimer = 0.5;
+			
+		}
+
 		Vector2 velocity;
 		auto component = m_owner->GetComponent<PhysicsComponent>();
 
 		if (component)
 		{
-			float multiplier = (m_groundCount > 0) ? 1 : 0.2f;
+			if (!isAttacking)
+			{
+				component->SetLinearVelocity(direction * speed);
+				velocity = direction * speed;
+			}
+			else
+			{
+				component->SetLinearVelocity(Vector2::zero);
+			}
 
-			component->ApplyForce(direction * speed * multiplier);
-			velocity = direction * speed;
 		}
 
-		if (m_groundCount > 0 && g_inputSystem.GetKeyState(key_space) == InputSystem::State::Pressed)
+		/*if (m_groundCount > 0 && g_inputSystem.GetKeyState(key_space) == InputSystem::State::Pressed)
 		{
 			auto component = m_owner->GetComponent<PhysicsComponent>();
 
 			if (component)
 			{
-				component->ApplyForce(Vector2::up * 500);
+				component->ApplyForce(Vector2::up * jump);
 				std::cout << "Jump" << std::endl;
 			}
-		}
+		}*/
 
 		auto animComponent = m_owner->GetComponent<SpriteAnimComponent>();
 		if (animComponent)
 		{
-			if (velocity.x != 0) animComponent->SetFlipHorizontal(velocity.x < 0);
-			if (std::fabs(velocity.x) > 0)
+			if (!isAttacking)
 			{
-				animComponent->SetSequence("run");
+				if (std::fabs(velocity.x) > 0)
+				{
+					animComponent->SetFlipHorizontal(velocity.x > 0);
+
+					animComponent->SetSequence("LeftRun");
+				}
+				else if (std::fabs(velocity.y) > 0)
+				{
+					if (direction == Vector2::down)
+					{
+						animComponent->SetSequence("ForwardRun");
+					}
+					else
+					{
+						animComponent->SetSequence("UpRun");
+					}
+				}
+				else
+				{
+					if (prevDirection == Vector2::down)
+					{
+						animComponent->SetSequence("ForwardIdle");
+					}
+					else
+					{
+						animComponent->SetFlipHorizontal(prevDirection.x > 0);
+						animComponent->SetSequence("ForwardIdle");
+					}
+				}
 			}
 			else
 			{
-				animComponent->SetSequence("idle");
+				if (std::fabs(prevDirection.x) > 0)
+				{
+					animComponent->SetFlipHorizontal(direction != Vector2::zero ? direction.x > 0 : prevDirection.x > 0);
+					animComponent->SetSequence("AtkLeft");
+				}
+				else
+				{
+					direction == Vector2::up ? animComponent->SetSequence("AtkUp") : animComponent->SetSequence("AtkDown");
+				}
+				
+			}
+
+			if (direction != Vector2::zero)
+			{
+				prevDirection = direction;
 			}
 		}
 
-		/*auto camera = m_owner->GetScene()->GetActorFromName("Camera"); 
+		auto camera = m_owner->GetScene()->GetActorFromName("Camera"); 
 		if (camera) 
 		{ 
 			camera->m_transform.position = m_owner->m_transform.position; 
-		} */
+		} 
 	}
 
 	void PlayerComponent::OnNotify(const Event& event)

@@ -45,4 +45,8 @@ namespace neu
 	{
 		m_body->ApplyForceToCenter(VECTOR2_TO_B2VEC2(force), true);
 	}
+	void RBPhysicsComponent::SetLinearVelocity(const Vector2& force)
+	{
+		m_body->SetLinearVelocity(VECTOR2_TO_B2VEC2(force));
+	}
 }

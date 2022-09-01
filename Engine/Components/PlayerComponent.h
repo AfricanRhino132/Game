@@ -24,8 +24,14 @@ namespace neu
 		void Update() override;
 
 	public:
-		float jump = 3000;		
+		float jump = 5;		
+
+		Vector2 prevDirection{ Vector2::zero };
 
 		int m_groundCount = 0;
+
+		float atkTimer = 0;
+
+		bool isAttacking = false;
 	};
 }

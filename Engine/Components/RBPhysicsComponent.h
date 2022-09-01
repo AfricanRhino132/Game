@@ -19,7 +19,8 @@ namespace neu
 
 		void Update() override;
 
-		virtual void ApplyForce(const Vector2& force);
+		virtual void ApplyForce(const Vector2& force) override;
+		virtual void SetLinearVelocity(const Vector2& force) override;
 
 		friend class CollisionComponent;
 
