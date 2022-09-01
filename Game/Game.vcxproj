@@ -32,9 +32,9 @@
     <Image Include="..\Build\Assets\Sprites\MetroidVania\Ghost-Files\PNG\ghost-idle.png" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Build\Assets\Scenes\level.txt" />
-    <Text Include="..\Build\Assets\Scenes\Prefabs.txt" />
-    <Text Include="..\Build\Assets\Scenes\Tilemap.txt" />
+    <Text Include="..\Build\Assets\Scenes\level.json" />
+    <Text Include="..\Build\Assets\Scenes\Prefabs.json" />
+    <Text Include="..\Build\Assets\Scenes\Tilemap.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\EnemyComponent.h" />

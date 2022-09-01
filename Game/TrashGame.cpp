@@ -10,7 +10,7 @@ void TrashGame::Initialize()
 
     rapidjson::Document document;
 
-    std::vector<std::string> sceneNames = { "Scenes/tilemap.txt", "Scenes/prefabs.txt", "Scenes/level.txt" };
+    std::vector<std::string> sceneNames = { "Scenes/tilemap.json", "Scenes/prefabs.json", "Scenes/level.json" };
 
     for (auto sceneName : sceneNames)
     {

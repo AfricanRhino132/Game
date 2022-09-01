@@ -30,13 +30,13 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Build\Assets\Scenes\level.txt">
+    <Text Include="..\Build\Assets\Scenes\level.json">
       <Filter>Resources</Filter>
     </Text>
-    <Text Include="..\Build\Assets\Scenes\Prefabs.txt">
+    <Text Include="..\Build\Assets\Scenes\Prefabs.json">
       <Filter>Resources</Filter>
     </Text>
-    <Text Include="..\Build\Assets\Scenes\Tilemap.txt">
+    <Text Include="..\Build\Assets\Scenes\Tilemap.json">
       <Filter>Resources</Filter>
     </Text>
   </ItemGroup>

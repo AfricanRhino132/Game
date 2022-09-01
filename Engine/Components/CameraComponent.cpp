@@ -17,7 +17,7 @@ namespace neu
 
         m_view = mxTranslation * mxRotation;
 
-        if ((g_inputSystem.GetMousePosition().x >= 0 && g_inputSystem.GetMousePosition().x <= 50) || (g_inputSystem.GetMousePosition().x > 750 && g_inputSystem.GetMousePosition().x <= 810))
+        if ((g_inputSystem.GetMousePosition().x >= 0 && g_inputSystem.GetMousePosition().x <= 50) || (g_inputSystem.GetMousePosition().x > g_renderer.getScreenWidth() - 50 && g_inputSystem.GetMousePosition().x <= g_renderer.getScreenWidth()))
         {
             Vector2 origin{ g_renderer.getScreenWidth() / 2, g_renderer.getScreenHeight() / 2 };
 
@@ -28,7 +28,7 @@ namespace neu
             m_owner->m_transform.position += dirVec * camera_speed * g_time.deltaTime;
         }
 
-        if ((g_inputSystem.GetMousePosition().y >= 0 && g_inputSystem.GetMousePosition().y <= 35) || (g_inputSystem.GetMousePosition().y > 565 && g_inputSystem.GetMousePosition().y <= 610))
+        if ((g_inputSystem.GetMousePosition().y >= 0 && g_inputSystem.GetMousePosition().y <= 35) || (g_inputSystem.GetMousePosition().y > g_renderer.getScreenHeight() - 35 && g_inputSystem.GetMousePosition().y <= g_renderer.getScreenHeight()))
         {
 
             Vector2 origin{ g_renderer.getScreenWidth() / 2, g_renderer.getScreenHeight() / 2 };

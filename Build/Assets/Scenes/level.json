@@ -17,7 +17,7 @@
           "components":[ 
               { 
                   "type":"CameraComponent", 
-                  "viewport_size": [800, 600],
+                  "viewport_size": [1920, 1080],
                   "camera_speed": 1000
               } 
           ] 
