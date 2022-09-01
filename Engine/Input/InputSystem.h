@@ -66,5 +66,6 @@ namespace neu
 	extern const uint32_t key_l;
 	extern const uint32_t key_j;
 	extern const uint32_t key_semicolon;
+	extern const uint32_t key_k;
 	
 }

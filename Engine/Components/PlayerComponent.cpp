@@ -17,26 +17,26 @@ namespace neu
 			isAttacking = false;
 		}
 
-		if (g_inputSystem.GetKeyState(key_a) == InputSystem::State::Held)
+		if (g_inputSystem.GetKeyState(left) == InputSystem::State::Held)
 		{
 			direction = Vector2::left;
 		}
-		if (g_inputSystem.GetKeyState(key_d) == InputSystem::State::Held)
+		if (g_inputSystem.GetKeyState(right) == InputSystem::State::Held)
 		{
 			direction = Vector2::right;
 		}
 
-		if (g_inputSystem.GetKeyState(key_w) == InputSystem::State::Held)
+		if (g_inputSystem.GetKeyState(up) == InputSystem::State::Held)
 		{
 			direction = Vector2::up;
 		}
 
-		if (g_inputSystem.GetKeyState(key_s) == InputSystem::State::Held)
+		if (g_inputSystem.GetKeyState(down) == InputSystem::State::Held)
 		{
 			direction = Vector2::down;
 		}
 
-		if (g_inputSystem.GetKeyState(key_shiftL) == neu::InputSystem::State::Pressed && atkTimer <= 0)
+		if (g_inputSystem.GetKeyState(atk) == neu::InputSystem::State::Pressed && atkTimer <= 0)
 		{
 			isAttacking = true;
 
@@ -190,6 +190,15 @@ namespace neu
 		{
 			health += std::get<float>(event.data);
 		}
+	}
+
+	void PlayerComponent::SetControls(uint8_t kL, uint8_t kR, uint8_t kU, uint8_t kD, uint8_t kA)
+	{
+		left = kL;
+		right = kR;
+		up = kU;
+		down = kD;
+		atk = kA;
 	}
 
 	void PlayerComponent::OnCollisionEnter(Actor* other)
