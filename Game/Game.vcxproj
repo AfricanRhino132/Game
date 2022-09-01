@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameComponents\EnemyComponent.cpp" />
+    <ClCompile Include="GameComponents\MouseComponent.cpp" />
     <ClCompile Include="GameComponents\ProjectileComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TrashGame.cpp" />
@@ -30,17 +31,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Build\Assets\Sprites\MetroidVania\Ghost-Files\PNG\ghost-idle.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="..\Build\Assets\Scenes\level.json" />
     <Text Include="..\Build\Assets\Scenes\Prefabs.json" />
     <Text Include="..\Build\Assets\Scenes\Tilemap.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\EnemyComponent.h" />
+    <ClInclude Include="GameComponents\MouseComponent.h" />
     <ClInclude Include="GameComponents\ProjectileComponent.h" />
     <ClInclude Include="TrashGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Build\Assets\Scenes\TitleScreen.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

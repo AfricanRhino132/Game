@@ -26,11 +26,9 @@
     <ClCompile Include="GameComponents\ProjectileComponent.cpp">
       <Filter>GameComponents</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\Build\Assets\Sprites\MetroidVania\Ghost-Files\PNG\ghost-idle.png">
-      <Filter>Resources</Filter>
-    </Image>
+    <ClCompile Include="GameComponents\MouseComponent.cpp">
+      <Filter>GameComponents</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Scenes\level.json">
@@ -53,5 +51,13 @@
     <ClInclude Include="GameComponents\ProjectileComponent.h">
       <Filter>GameComponents</Filter>
     </ClInclude>
+    <ClInclude Include="GameComponents\MouseComponent.h">
+      <Filter>GameComponents</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Build\Assets\Scenes\TitleScreen.json">
+      <Filter>Resources</Filter>
+    </None>
   </ItemGroup>
 </Project>
