@@ -36,7 +36,9 @@
       "components": [
         {
           "type": "PlayerComponent",
-          "speed": 5
+          "speed": 5,
+          "damage": 10.0,
+          "health": 100
         },
         {
           "type": "SpriteAnimComponent",
@@ -156,7 +158,9 @@
       "components": [
         {
           "type": "PlayerComponent",
-          "speed": 5
+          "speed": 5,
+          "damage": 20.0,
+          "health":  50
         },
         {
           "type": "SpriteAnimComponent",
@@ -196,7 +200,7 @@
               "sequence.num_rows": 2,
               "sequence.start_frame": 1,
               "sequence.end_frame": 1,
-              "texture_name": "Sprites/Knight/KnightUpRun.png"
+              "texture_name": "Sprites/Wizard/PPUpRun.png"
             },
             {
               "sequence.name": "LeftRun",
@@ -205,26 +209,26 @@
               "sequence.num_rows": 2,
               "sequence.start_frame": 1,
               "sequence.end_frame": 4,
-              "texture_name": "Sprites/Knight/KnightLeftRun.png"
+              "texture_name": "Sprites/Wizard/PPLeftRun.png"
             },
             {
               "sequence.name": "LeftIdle",
-              "sequence.fps": 2,
+              "sequence.fps": 8,
               "sequence.num_columns": 2,
               "sequence.num_rows": 2,
               "sequence.start_frame": 1,
-              "sequence.end_frame": 3,
-              "texture_name": "Sprites/Knight/KnightLeftIdle.png"
+              "sequence.end_frame": 4,
+              "texture_name": "Sprites/Wizard/PPLeftIdle.png"
             },
             {
               "sequence.name": "AtkLeft",
-              "sequence.fps": 17,
+              "sequence.fps": 16,
               "sequence.num_columns": 3,
-              "sequence.num_rows": 3,
+              "sequence.num_rows": 4,
               "sequence.start_frame": 1,
-              "sequence.end_frame": 7,
+              "sequence.end_frame": 12,
               "sequence.loop": true,
-              "texture_name": "Sprites/Knight/KnightAttackLeft.png"
+              "texture_name": "Sprites/Wizard/PPLeftAttack.png"
             },
             {
               "sequence.name": "AtkUp",

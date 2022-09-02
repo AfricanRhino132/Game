@@ -196,10 +196,11 @@ void EnemyComponent::OnCollisionEnter(neu::Actor* other)
 {
     if (other->GetName() == "HitBox" && other->GetParent()->GetTag() == "Player")
     {
+
         neu::Event event;
         event.name = "EVENT_DAMAGE";
         event.data = std::stof(other->GetTag());
-        event.receiver = this;
+        event.receiver = m_owner;
 
         neu::g_eventManager.Notify(event);
 
@@ -208,6 +209,7 @@ void EnemyComponent::OnCollisionEnter(neu::Actor* other)
 
 void EnemyComponent::OnCollisionExit(neu::Actor* other)
 {
+
 }
 
 void EnemyComponent::OnNotify(const neu::Event& event)

@@ -21,26 +21,6 @@
                   "camera_speed": 1000
               } 
           ] 
-      }, 
-      {
-         "type":"Actor",
-         "transform":{
-            "position":[
-               400,
-               300
-            ],
-            "scale":[
-               1,
-               1
-            ],
-            "rotation":0
-         },
-         "components":[
-            {
-               "type":"SpriteComponent",
-               "texture_name":"Sprites/background.png"
-            }
-         ]
       }
    ]
 }

@@ -71,17 +71,6 @@ void TrashGame::Update()
             //m_scene->Add(std::move(player2));
         }
 
-        for (int i = 0; i < 10; i++)
-        {
-            auto actor = neu::Factory::Instance().Create<neu::Actor>("Coin");
-
-            actor->m_transform.position = { neu::random(600), neu::random(100)};
-
-            actor->Initialize();
-
-            m_scene->Add(std::move(actor));
-        }
-
         for (int i = 0; i < 3; i++)
         {
             auto actor = neu::Factory::Instance().Create<neu::Actor>("Goblin");

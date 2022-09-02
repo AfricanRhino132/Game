@@ -164,21 +164,24 @@ namespace neu
 					{
 						animComponent->setRegistration({ 0.5f, 0.85f });
 
-						auto hitbox = neu::Factory::Instance().Create<neu::Actor>("HitBox");
+						if (atkTimer == 0.5)
+						{
+							auto hitbox = neu::Factory::Instance().Create<neu::Actor>("HitBox");
 
-						hitbox->m_transform.position = m_owner->m_transform.position + m_owner->GetComponent<neu::CollisionComponent>()->GetSize() * prevDirection;
+							hitbox->m_transform.position = m_owner->m_transform.position + m_owner->GetComponent<neu::CollisionComponent>()->GetSize() * prevDirection;
 
-						hitbox->GetComponent<neu::CollisionComponent>()->SetSize({ m_owner->GetComponent<neu::CollisionComponent>()->GetSize()});
+							hitbox->GetComponent<neu::CollisionComponent>()->SetSize({ m_owner->GetComponent<neu::CollisionComponent>()->GetSize() });
 
-						hitbox->SetLifespan(0.5);
+							hitbox->SetLifespan(0.5);
 
-						hitbox->SetTag(std::to_string(m_owner->GetComponent<neu::CharacterComponent>()->damage));
+							hitbox->SetTag(std::to_string(m_owner->GetComponent<neu::CharacterComponent>()->damage));
 
-						hitbox->SetParent(m_owner);
+							hitbox->SetParent(m_owner);
 
-						hitbox->Initialize();
+							hitbox->Initialize();
 
-						m_owner->GetScene()->Add(std::move(hitbox));
+							m_owner->GetScene()->Add(std::move(hitbox));
+						}
 					}
 				}
 
@@ -242,8 +245,10 @@ namespace neu
 
 		if (other->GetName() == "HitBox" && other->GetParent()->GetTag() == "Enemy")
 		{
-			health -= std::stof(other->GetTag());
-			std::cout << health << std::endl;
+			if (!isAttacking)
+			{
+				health -= std::stof(other->GetTag());
+			}
 		}
 		
 		if (other->GetTag() == "Enemy")
