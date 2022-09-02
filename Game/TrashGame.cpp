@@ -75,7 +75,7 @@ void TrashGame::Update()
             auto player2 = neu::Factory::Instance().Create<neu::Actor>("Knight");
 
             player->m_transform.position = { 400, 300 };
-            player2->m_transform.position = { 700, 300 };
+            player2->m_transform.position = { 400, 250 };
 
             player->Initialize();
             player2->Initialize();
@@ -87,7 +87,7 @@ void TrashGame::Update()
             m_scene->Add(std::move(player));
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 15; i++)
         {
             auto actor = neu::Factory::Instance().Create<neu::Actor>("Goblin");
 
