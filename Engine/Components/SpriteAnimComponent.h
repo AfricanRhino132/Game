@@ -44,5 +44,7 @@ namespace neu
 
 		std::map<std::string, Sequence> m_sequences;
 		Sequence* m_sequence = nullptr;
+
+		bool animDone = true;
 	};
 }

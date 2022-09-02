@@ -18,6 +18,7 @@ namespace neu
             if (frame > m_sequence->end_frame)
             {
                 frame = (m_sequence->loop) ? m_sequence->start_frame : m_sequence->end_frame;
+                animDone = true;
             }
         }
     }
@@ -32,9 +33,16 @@ namespace neu
         // don’t restart sequence if already playing 
         if (m_sequence && m_sequence->name == name) return;
 
+        if (!animDone) 
+        {
+            return;
+        }
+
         if (m_sequences.find(name) != m_sequences.end())
         {
             m_sequence = &m_sequences[name];
+
+            animDone = m_sequence->loop;
 
             frame = m_sequence->start_frame;
             frameTimer = 0;
