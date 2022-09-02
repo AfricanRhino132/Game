@@ -162,6 +162,8 @@ void EnemyComponent::Update()
 
                         hitbox->Initialize();
 
+                        hitbox->SetParent(m_owner);
+
                         m_owner->GetScene()->Add(std::move(hitbox));
                     }
 
@@ -192,9 +194,15 @@ void EnemyComponent::Update()
 
 void EnemyComponent::OnCollisionEnter(neu::Actor* other)
 {
-    if (other->GetTag() == "Player")
+    if (other->GetName() == "HitBox" && other->GetParent()->GetTag() == "Player")
     {
-        
+        neu::Event event;
+        event.name = "EVENT_DAMAGE";
+        event.data = std::stof(other->GetTag());
+        event.receiver = this;
+
+        neu::g_eventManager.Notify(event);
+
     }
 }
 

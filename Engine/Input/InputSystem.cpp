@@ -58,11 +58,6 @@ namespace neu
 			keyState = State::Released;
 		}
 
-		// set the keyState if keyDown (true) and prevKeyDown (true) 
-		// set the keyState if keyDown (true) and prevKeyDown (false) 
-		// set the keyState if keyDown (false) and prevKeyDown (true) 
-		// set the keyState if keyDown (false) and prevKeyDown (false) 
-
 		return keyState;
 	}
 
