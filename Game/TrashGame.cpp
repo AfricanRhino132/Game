@@ -83,8 +83,8 @@ void TrashGame::Update()
             player->GetComponent<neu::PlayerComponent>()->SetControls(neu::key_a, neu::key_d, neu::key_w, neu::key_s, neu::key_shiftL);
             player2->GetComponent<neu::PlayerComponent>()->SetControls(neu::key_j, neu::key_l, neu::key_i, neu::key_k, neu::key_semicolon);
 
-            m_scene->Add(std::move(player));
             m_scene->Add(std::move(player2));
+            m_scene->Add(std::move(player));
         }
 
         for (int i = 0; i < 3; i++)
