@@ -1,26 +1,39 @@
 {
    "actors":[
-        { 
-          "type":"Actor", 
-          "name":"Camera", 
-          "transform":{ 
-              "position":[ 
-                  400, 
-                  300 
-              ], 
-              "scale":[ 
-                  1, 
-                  1 
-              ], 
-              "rotation":0 
-          }, 
-          "components":[ 
-              { 
-                  "type":"CameraComponent", 
-                  "viewport_size": [1920, 1080],
-                  "camera_speed": 1000
-              } 
-          ] 
-      }
+    {
+      "type": "Actor",
+      "name": "Camera",
+      "transform": {
+        "position": [
+          400,
+          300
+        ],
+        "scale": [
+          1,
+          1
+        ],
+        "rotation": 0
+      },
+      "components": [
+        {
+          "type": "CameraComponent",
+          "viewport_size": [ 1920, 1080 ],
+          "camera_speed": 1000
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "GameMusic",
+      "active": true,
+      "components": [
+        {
+          "type": "AudioComponent",
+          "sound_name": "Audio/Music/GameMusic.mp3",
+          "loop": true,
+          "play_on_start": true
+        }
+      ]
+    
    ]
 }

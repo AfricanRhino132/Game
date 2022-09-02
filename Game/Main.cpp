@@ -17,7 +17,7 @@ int main()
 
     neu::Engine::Instance().Register();
 
-    neu::g_renderer.CreateWindow("Neumont", 1920, 1080);
+    neu::g_renderer.CreateWindow("CPR Dungeon", 1920, 1080);
     neu::g_renderer.SetClearColor(neu::Color::black);
 
     std::unique_ptr<TrashGame> game = std::make_unique<TrashGame>();
