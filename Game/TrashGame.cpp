@@ -91,7 +91,7 @@ void TrashGame::Update()
         {
             auto actor = neu::Factory::Instance().Create<neu::Actor>("Goblin");
 
-            actor->m_transform.position = { neu::random(600), neu::random(100) };
+            actor->m_transform.position = { neu::random(700,900), neu::random(200, 300) };
 
             actor->Initialize();
 
