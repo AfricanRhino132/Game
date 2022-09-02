@@ -54,6 +54,10 @@ namespace neu
 
 		void SetLifespan(float time) { lifespan = time; }
 
+		Actor* GetParent() { return m_parent; }
+		
+		void SetParent(Actor* parent) { m_parent = parent; }
+
 		friend class Scene;
 		
 		Transform m_transform;

@@ -19,6 +19,8 @@ namespace neu
 		void SetFlipHorizontal(bool flip = true) { flipHorizontal = flip; }
 		bool GetFlipHorizontal() { return flipHorizontal; }
 
+		void setRegistration(const Vector2& v) { registration = v; }
+
 	protected:
 		Rect source;
 		bool flipHorizontal = false;

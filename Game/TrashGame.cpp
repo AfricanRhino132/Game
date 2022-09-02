@@ -71,20 +71,20 @@ void TrashGame::Update()
 
     
         {   
-            auto player = neu::Factory::Instance().Create<neu::Actor>("Knight");
-            auto player2 = neu::Factory::Instance().Create<neu::Actor>("Knight");
+            auto player = neu::Factory::Instance().Create<neu::Actor>("Wizard");
+            //auto player2 = neu::Factory::Instance().Create<neu::Actor>("Knight");
 
             player->m_transform.position = { 400, 300 };
-            player2->m_transform.position = { 700, 300 };
+            //player2->m_transform.position = { 700, 300 };
 
             player->Initialize();
-            player2->Initialize();
+            //player2->Initialize();
 
             player->GetComponent<neu::PlayerComponent>()->SetControls(neu::key_a, neu::key_d, neu::key_w, neu::key_s, neu::key_shiftL);
-            player2->GetComponent<neu::PlayerComponent>()->SetControls(neu::key_j, neu::key_l, neu::key_i, neu::key_k, neu::key_semicolon);
+            //player2->GetComponent<neu::PlayerComponent>()->SetControls(neu::key_j, neu::key_l, neu::key_i, neu::key_k, neu::key_semicolon);
 
             m_scene->Add(std::move(player));
-            m_scene->Add(std::move(player2));
+            //m_scene->Add(std::move(player2));
         }
 
         for (int i = 0; i < 10; i++)

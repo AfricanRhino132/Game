@@ -159,6 +159,32 @@ namespace neu
 				else
 				{
 					prevDirection == Vector2::up ? animComponent->SetSequence("AtkUp") : animComponent->SetSequence("AtkDown");
+
+					if (prevDirection == Vector2::up && m_owner->GetName() == "Wizard")
+					{
+						animComponent->setRegistration({ 0.5f, 0.85f });
+
+						auto hitbox = neu::Factory::Instance().Create<neu::Actor>("HitBox");
+
+						hitbox->m_transform.position = m_owner->m_transform.position + m_owner->GetComponent<neu::CollisionComponent>()->GetSize() * prevDirection;
+
+						hitbox->GetComponent<neu::CollisionComponent>()->SetSize({ m_owner->GetComponent<neu::CollisionComponent>()->GetSize()});
+
+						hitbox->SetLifespan(0.5);
+
+						hitbox->SetTag(std::to_string(m_owner->GetComponent<neu::CharacterComponent>()->damage));
+
+						hitbox->SetParent(m_owner);
+
+						hitbox->Initialize();
+
+						m_owner->GetScene()->Add(std::move(hitbox));
+					}
+				}
+
+				if (animComponent->m_sequence->name != "AtkUp")
+				{
+					animComponent->setRegistration({ 0.5f, 0.5f });
 				}
 				
 			}
@@ -214,7 +240,7 @@ namespace neu
 			other->SetDestroy();
 		}
 
-		if (other->GetName() == "HitBox")
+		if (other->GetName() == "HitBox" && other->GetParent()->GetTag() == "Enemy")
 		{
 			health -= std::stof(other->GetTag());
 			std::cout << health << std::endl;
@@ -223,6 +249,19 @@ namespace neu
 		if (other->GetTag() == "Enemy")
 		{
 			colliding = other;
+
+			if (m_owner->GetName() == "Wizard")
+			{
+				if (isAttacking) 
+				{
+					Event event;
+					event.name = "EVENT_DAMAGE";
+					event.data = damage;
+					event.receiver = other;
+
+					g_eventManager.Notify(event);
+				}
+			}
 		}
 
 		if (other->GetTag() == "Ground")
