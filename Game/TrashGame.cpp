@@ -10,28 +10,13 @@ void TrashGame::Initialize()
 
 	m_scene = std::make_unique<neu::Scene>();
 
-    rapidjson::Document document;
+    Read({ "Scenes/TitleScreen.json" });
 
-    std::vector<std::string> sceneNames = { "Scenes/tilemap.json", "Scenes/prefabs.json", "Scenes/level.json" };
-
-    for (auto sceneName : sceneNames)
-    {
-        bool success = neu::json::Load(sceneName, document);
-
-        if (!success)
-        {
-            LOG("Could not read scene %s", sceneName.c_str());
-
-            continue;
-        }
-
-        m_scene->Read(document);
-    }
-    
-    m_scene->Initialize();
 
     neu::g_eventManager.Subscribe("EVENT_ADD_POINTS", std::bind(&TrashGame::OnAddPoints, this, std::placeholders::_1));
-}   
+}
+
+
 
 void TrashGame::Shutdown()
 {
@@ -43,10 +28,41 @@ void TrashGame::Update()
     switch (m_gameState)
     {
     case TrashGame::gameState::titleScreen:
-        if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::Pressed)
+
+        //select quit game
+        if (neu::g_inputSystem.GetKeyState(neu::key_down) == neu::InputSystem::Pressed && m_titleState == TitleScreenState::playGame)
         {
+            m_scene->GetActorFromName("PlayGameSelection")->SetActive(false);
+            m_scene->GetActorFromName("QuitGameSelection")->SetActive();
+            m_titleState = TitleScreenState::exitGame;
+        }
+
+        //Select Start Game
+        if (neu::g_inputSystem.GetKeyState(neu::key_up) == neu::InputSystem::Pressed && m_titleState == TitleScreenState::exitGame)
+        {
+            m_scene->GetActorFromName("QuitGameSelection")->SetActive(false);
+            m_scene->GetActorFromName("PlayGameSelection")->SetActive();
+            m_titleState = TitleScreenState::playGame;
+        }
+
+        //Start or Close Game
+        if (neu::g_inputSystem.GetKeyState(neu::key_space) == neu::InputSystem::Pressed || neu::g_inputSystem.GetKeyState(neu::key_enter) == neu::InputSystem::Pressed)
+        {
+            switch (m_titleState)
+            {
+            case TrashGame::TitleScreenState::playGame:
+                m_scene->Clear();
+                Read({ "Scenes/tilemap.json", "Scenes/prefabs.json", "Scenes/level.json" });
+                m_gameState = gameState::startLevel;
+                break;
+            case TrashGame::TitleScreenState::exitGame:
+                quit = true;
+                break;
+            default:
+                break;
+            }
             
-            m_gameState = gameState::startLevel;
+            //m_gameState = gameState::startLevel;
         }
 
         break;
@@ -133,6 +149,27 @@ void TrashGame::OnPlayerDead(const neu::Event& event)
     m_gameState = gameState::playerDead;
     m_stateTimer = 3;
     m_lives--;
+}
+
+void TrashGame::Read(const std::vector<std::string> sceneNames)
+{
+    rapidjson::Document document;
+
+    for (auto sceneName : sceneNames)
+    {
+        bool success = neu::json::Load(sceneName, document);
+
+        if (!success)
+        {
+            LOG("Could not read scene %s", sceneName.c_str());
+
+            continue;
+        }
+
+        m_scene->Read(document);
+    }
+
+    m_scene->Initialize();
 }
 
 void TrashGame::OnNotify(const neu::Event& event)

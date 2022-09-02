@@ -15,6 +15,12 @@ public:
 		gameOver
 	};
 
+	enum class TitleScreenState
+	{
+		playGame,
+		exitGame
+	};
+
 public:
 	virtual void Initialize() override;
 	virtual void Shutdown() override;
@@ -26,9 +32,13 @@ public:
 
 	void OnAddPoints(const neu::Event& event);
 	void OnPlayerDead(const neu::Event& event);
+	void Read(const std::vector<std::string> sceneNames);
+
+	float quit = false;
 
 private :
 	gameState m_gameState = gameState::titleScreen;
+	TitleScreenState m_titleState = TitleScreenState::playGame;
 
 	float m_stateTimer = 0;
 	int m_lives = 3;

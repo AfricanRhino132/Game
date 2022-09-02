@@ -73,22 +73,19 @@
       },
       "components": [
         {
-          "type": "SpriteComponent",
-          "texture_name": "Images/start.png"
-        },
-        {
-          "type": "RBPhysicsComponent",
-          "damping": 0.4,
-          "data.gravity_scale": 0,
-          "data.constrain_angle": true
-        },
-        {
-          "type": "CollisionComponent",
-          "data.restitution": 0.7,
-          "data.is_trigger": true,
-          "data.size": [
-            100,
-            100
+          "type": "TextComponent",
+          "text": "Start Game",
+          "font_name": "Fonts/Enchanted.ttf",
+          "font_size": 32,
+          "registration": [
+            0.0,
+            0.5
+          ],
+          "color": [
+            0,
+            0,
+            0,
+            255
           ]
         }
       ]
@@ -124,20 +121,6 @@
             0,
             0,
             255
-          ]
-        },
-        {
-          "type": "RBPhysicsComponent",
-          "data.gravity_scale": 0,
-          "data.constrain_angle": true,
-          "data.is_dynamic": false
-        },
-        {
-          "type": "CollisionComponent",
-          "data.is_trigger": true,
-          "data.size": [
-            100,
-            100
           ]
         }
       ]
@@ -178,44 +161,46 @@
     },
     {
       "type": "Actor",
-      "name": "Mouse",
+      "name": "PlayGameSelection",
+      "active": true,
       "transform": {
+        "position": [
+          670,
+          340
+        ],
         "scale": [
-          1,
-          1
+          1.5,
+          1.5
         ],
         "rotation": 0
       },
       "components": [
         {
-          "type": "RBPhysicsComponent",
-          "damping": 0.4,
-          "data.gravity_scale": 0,
-          "data.constrain_angle": true
-        },
-        {
-          "type": "EnemyComponent",
-          "speed": 20,
-          "health": 30,
-          "damage": 10
-        },
-        {
-          "type": "CollisionComponent",
-          "data.restitution": 0.7,
-          "scale_offset": [
-            0.3,
-            0.5
-          ],
-          "data.is_trigger": true,
-          "data.size": [
-            20,
-            23
-          ]
-        },
-        {
-          "type": "MouseComponent"
+          "type": "SpriteComponent",
+          "texture_name": "Images/SelectionArrow.png"
         }
-
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "QuitGameSelection",
+      "active": false,
+      "transform": {
+        "position": [
+          670,
+          540
+        ],
+        "scale": [
+          1.5,
+          1.5
+        ],
+        "rotation": 0
+      },
+      "components": [
+        {
+          "type": "SpriteComponent",
+          "texture_name": "Images/SelectionArrow.png"
+        }
       ]
     }
   ]

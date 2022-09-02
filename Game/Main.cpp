@@ -24,8 +24,7 @@ int main()
 
     game->Initialize();
 
-    bool quit = false;
-    while (!quit)
+    while (!game->quit)
     {
         //update
         neu::g_time.Tick();
@@ -36,7 +35,7 @@ int main()
 
         if (neu::g_inputSystem.GetKeyState(neu::key_esc) == neu::InputSystem::State::Pressed)
         {
-            quit = true;
+            game->quit = true;
         }
 
         game->Update();

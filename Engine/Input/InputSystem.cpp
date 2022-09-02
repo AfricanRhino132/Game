@@ -20,6 +20,9 @@ namespace neu
 	const uint32_t key_l = SDL_SCANCODE_L;
 	const uint32_t key_j = SDL_SCANCODE_J;
 	const uint32_t key_k = SDL_SCANCODE_K;
+	const uint32_t key_enter = SDL_SCANCODE_RETURN;
+	const uint32_t key_up = SDL_SCANCODE_UP;
+	const uint32_t key_down = SDL_SCANCODE_DOWN;
 
 	void InputSystem::Initialize()
 	{
