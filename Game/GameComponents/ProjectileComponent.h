@@ -19,4 +19,6 @@ protected:
 	neu::Vector2 direction{ neu::Vector2::zero };
 
 	float speed = 0;
+
+	float delay = 0;
 };

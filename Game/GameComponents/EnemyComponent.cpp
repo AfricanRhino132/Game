@@ -12,12 +12,18 @@ void EnemyComponent::Update()
 {
     atk_timer -= neu::g_time.deltaTime;
 
-    
-
     auto actor = m_owner->GetScene()->GetActorsFromTag("Player");
-    if (actor[0])
+
+    int closer = 0;
+
+    if (actor.size() == 2)
     {
-        float dist = m_owner->m_transform.position.Distance(actor[0]->m_transform.position);
+        closer = (m_owner->m_transform.position.Distance(actor[0]->m_transform.position) > m_owner->m_transform.position.Distance(actor[1]->m_transform.position));
+    }
+
+    if (actor[closer])
+    {
+        float dist = m_owner->m_transform.position.Distance(actor[closer]->m_transform.position);
 
         auto sprAnim = m_owner->GetComponent<neu::SpriteAnimComponent>();
 
@@ -27,7 +33,7 @@ void EnemyComponent::Update()
             
             isFollowing = true;
 
-            neu::Vector2 direction = actor[0]->m_transform.position - m_owner->m_transform.position;
+            neu::Vector2 direction = actor[closer]->m_transform.position - m_owner->m_transform.position;
 
             if (std::fabs(direction.x) > std::fabs(direction.y))
             {
@@ -40,9 +46,6 @@ void EnemyComponent::Update()
 
             if (std::fabs(dist) > attack_range)
             {
-                
-
-
                 if (colliding)
                 {
                     neu::Vector2 dirToPlayer = colliding->m_transform.position - m_owner->m_transform.position;
@@ -100,7 +103,7 @@ void EnemyComponent::Update()
 
                         if (projectileComp)
                         {
-                            projectileComp->SetDirection(direction);
+                            projectileComp->SetDirection(prevDirection);
                         }
 
                         m_owner->GetScene()->Add(std::move(projectile));
@@ -136,7 +139,7 @@ void EnemyComponent::Update()
                         }
                     }
 
-                    neu::Vector2 dirToPlayer = actor[0]->m_transform.position - m_owner->m_transform.position;
+                    neu::Vector2 dirToPlayer = actor[closer]->m_transform.position - m_owner->m_transform.position;
 
                     if (std::fabs(dirToPlayer.x) > std::fabs(dirToPlayer.y))
                     {
@@ -178,6 +181,17 @@ void EnemyComponent::Update()
                             if ((sprAnim->m_sequence->name != "ForwardAtk" && sprAnim->m_sequence->name != "UpAtk") || sprAnim->lastFrame == sprAnim->m_sequence->end_frame)
                             {
                                 sprAnim->SetSequence(prevDirection.y > 0 ? "ForwardIdle" : "UpIdle");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (sprAnim)
+                        {
+                            if (sprAnim->m_sequence->name != "LeftAtk" || sprAnim->lastFrame == sprAnim->m_sequence->end_frame)
+                            {
+                                sprAnim->SetFlipHorizontal(prevDirection.x > 0);
+                                sprAnim->SetSequence("LeftIdle");
                             }
                         }
                     }
